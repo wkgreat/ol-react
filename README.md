@@ -1,13 +1,21 @@
 ##A GIS Implement by OpenLayers and React
 
 ##Components:
+
 ###TOC(Table of Contents)
+
 Manage Layers of Map, include order of layers and setting of Layers
+
 ###ToolBar
+
 Container of Tool Butttons
+
 ####ADD XYZ Layer
+
 Add XYZ Tiled Layer by XYZ URL
+
 ####ADD CSV Layer
+
 Add Vector Layer from csv Data. Support CSV string, CSV File and CSV URL.
 Also Support the x and y field choosing.
 
