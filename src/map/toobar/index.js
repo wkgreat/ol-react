@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import * as tools from './tools';
 import './maptoolbar.css'
 import styled from 'styled-components';
-import {Menu} from 'antd';
 
 class MapToobar extends Component {
 
@@ -30,6 +29,7 @@ const MapToobarWrapper = styled.div`
     .button {
       border: 1px solid red;
     }
+    
 
 `;
 

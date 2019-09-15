@@ -11,7 +11,7 @@ class MapAPP extends Component {
         return(
             <Provider store={store}>
                 <GlobalStyle/>
-                <Olmap></Olmap>
+                <Olmap />
             </Provider>
         );
     }

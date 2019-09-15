@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {LayerItemWrapper, LayerToolDiv} from './style';
 import {connect} from 'react-redux';
 import * as olmapActions from '../olmap/store/actionCreator';

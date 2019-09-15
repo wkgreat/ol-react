@@ -1,27 +1,21 @@
-import React, {Component} from 'react';
+import React, {Component,Fragment} from 'react';
 import {connect} from 'react-redux';
-import {Layout} from 'antd';
 import MapToolbar from "../toobar";
 import TOC from '../toc/';
-import {HeaderWrapper, TitleDiv, MapDiv} from './style';
+import {HeaderWrapper, TitleDiv, MapDiv,TOCWrapper} from './style';
 
 class Olmap extends Component {
 
     render() {
         return (
-            <Layout>
-                <Layout.Header>
-                    <HeaderWrapper>
-                        <TitleDiv>WKGIS</TitleDiv>
-                        <MapToolbar/>
-                    </HeaderWrapper>
-
-                </Layout.Header>
-                <Layout>
-                    <Layout.Sider width={200}> <TOC/> </Layout.Sider>
-                    <Layout.Content> <MapDiv id='map'/> </Layout.Content>
-                </Layout>
-            </Layout>
+            <Fragment>
+                <HeaderWrapper>
+                    <TitleDiv>WKGIS</TitleDiv>
+                    <MapToolbar/>
+                </HeaderWrapper>
+                <MapDiv id='map'/>
+                <TOCWrapper><TOC/></TOCWrapper>
+            </Fragment>
         );
     }
 
