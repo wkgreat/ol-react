@@ -25,5 +25,4 @@ export const TOCWrapper = styled.div`
   top: 42px;
   right: 0px;
   z-index: 9;
-
 `;

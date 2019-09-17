@@ -27,7 +27,7 @@ class AddXYZLayerTool extends Component {
         return (
             <Fragment>
 
-                <Button ghost={true} onClick={this.onButtonClick}>添加XYZ图层</Button>
+                <Button ghost={false} onClick={this.onButtonClick} block={true}>添加XYZ图层</Button>
                 <Modal
                     title = '添加XYZ图层'
                     visible={this.state.modalVisible}

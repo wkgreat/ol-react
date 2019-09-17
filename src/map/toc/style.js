@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const TOCWrapper = styled.div`
-  width: 190px;
+  width: 200px;
+  height: 100%;
   overflow: auto;
-  background-color: rgba(81,139,125,0.5);
+  background-color: rgba(0,0,0,0.8);
   box-sizing: border-box;
-  margin: 5px 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin: 0px 0px;
   
 `;
 
@@ -15,9 +14,10 @@ export const TOCTitle = styled.div`
   box-sizing: border-box;
   min-height: 30px;
   padding-left: 10px;
-  border: 1px solid darkblue;
-  overflow: auto;
-  
+  //border: 1px solid white;
+  //overflow: auto;
+  background-color: rgba(50,50,50,0.8);
+  text-align: center;
   span {
     color: blanchedalmond;
     font-size: 18px;
@@ -32,7 +32,6 @@ export const LayerItemWrapper = styled.div`
   padding-left: 10px;
   border: 1px solid darkblue;
   overflow: auto;
-  
   
   span {
     color: blanchedalmond;

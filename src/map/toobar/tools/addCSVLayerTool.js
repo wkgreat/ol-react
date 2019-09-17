@@ -47,7 +47,7 @@ class AddCSVLayerTool extends Component {
         return (
             <Fragment>
 
-                <Button ghost={true} onClick={this.onButtonClick}>添加CSV矢量图层</Button>
+                <Button ghost={false} onClick={this.onButtonClick} block={true}>添加CSV矢量图层</Button>
                 <Modal
                     title = '添加CSV矢量图层'
                     visible={this.state.modalVisible}

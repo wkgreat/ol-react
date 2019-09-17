@@ -22,8 +22,10 @@ class MapToobar extends Component {
 
 const MapToobarWrapper = styled.div`
 
+    position: absolute;
+    top: 42px;
+    width: 160px;
     z-index: 99;
-    float: left;
     opacity: 1;
     
     .button {
