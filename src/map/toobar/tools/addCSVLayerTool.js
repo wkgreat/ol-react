@@ -59,7 +59,8 @@ class AddCSVLayerTool extends Component {
                         <Radio value={this.csvType.STRING}>CSV字符串</Radio>
                         <Radio value={this.csvType.FILE}>CSV文件</Radio>
                         <Radio value={this.csvType.URL}>CSV的URL</Radio>
-                    </Radio.Group><Divider/>
+                    </Radio.Group>
+                    <Divider/>
                     {this.getCSVSettingPanel(this.state.inputCSVType)}
                     <Divider/>
                     经度字段:
@@ -216,7 +217,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addLayer: (olmap, name,csv,fieldIndex) => {
+    addLayer: (olmap, name, csv, fieldIndex) => {
         const layer = olmapFuncs.makeCSVLayer(olmap,name,csv,fieldIndex);
         const action = actionCreators.addLayerAction(layer);
         dispatch(action);
