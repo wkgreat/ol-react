@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import MapToolbar from "../toobar";
 import TOC from '../toc/';
 import {HeaderWrapper, TitleDiv, MapDiv,TOCWrapper} from './style';
+import logo from '../static/logo.gif';
 
 class Olmap extends Component {
 
@@ -10,7 +11,7 @@ class Olmap extends Component {
         return (
             <Fragment>
                 <HeaderWrapper>
-                    <TitleDiv>WKGIS</TitleDiv>
+                    <TitleDiv><img src={logo} height={42}></img>&nbsp;<span>A SIMPLE WEBGIS APP. Author: Ke WANG</span></TitleDiv>
                     <MapToolbar/>
                 </HeaderWrapper>
                 <MapDiv id='map'/>
