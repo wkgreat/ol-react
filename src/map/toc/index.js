@@ -12,7 +12,7 @@ const TOC = (props) => {
 
         return layers.getArray().map(layer=>{
             const name = layer.get('name');
-            if(layer instanceof Group) {
+            if(layer instanceof Group) { // 如果是groupLayer
                 return (
                     <Fragment>
                         <LayerItem layerName={name} key={name} />

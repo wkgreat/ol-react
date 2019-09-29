@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal,Switch,Slider} from 'antd';
 
-class LayerSettingModal extends Component {
+class RasterLayerSettingModal extends Component {
 
     constructor(props) {
         super(props);
@@ -30,7 +30,7 @@ class LayerSettingModal extends Component {
 
         return(
             <Modal
-                title = {"图层 "+layer.get('name')+" 属性设置："}
+                title = {"栅格图层 "+layer.get('name')+" 属性设置："}
                 visible={this.state.visible}
                 onOk={this.onSettingOK}
                 onCancel={this.onSettingCancle}
@@ -63,4 +63,4 @@ class LayerSettingModal extends Component {
 
 }
 
-export default LayerSettingModal;
+export default RasterLayerSettingModal;

@@ -5,6 +5,10 @@ import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
+import ImageLayer from "ol/layer/Image";
+import {Group} from "ol/layer";
+import BaseLayer from "ol/layer/Base";
+import {defaultPointStyle} from './olmap';
 
 function* layerIdGenerator() {
     let id = 1;
@@ -14,14 +18,17 @@ function* layerIdGenerator() {
     }
 }
 
+//layer编号生成
 export const layerIDGen = layerIdGenerator();
 
+//生成图层唯一名称，要判断地图里面有没有重名的，如果有需要添加唯一编号
 export const genLayerName = (olmap, name) => {
     name = name || "layer";
     const layersNames = olmap.getLayers().getArray().map(l => l.get('name'));
     return layersNames.includes(name) ? name + "_" + layerIDGen.next().value : name;
 };
 
+//使用提供的xyz瓦片的url生成图层
 export const makeXYZLayer = (olmap, name, url) => {
     const layer = new TileLayer({
         name: genLayerName(olmap, name),
@@ -33,14 +40,17 @@ export const makeXYZLayer = (olmap, name, url) => {
 
 };
 
+//得到指定名字的图层
 export const findLayerByName = (olmap, name) => {
     return olmap.getLayers().getArray().find(layer => layer.get('name') === name);
 };
 
+//得到指定名字的图层index，相当于图层在地图中的顺序
 export const findLayerIndexByName = (olmap, name) => {
     return olmap.getLayers().getArray().findIndex(layer => layer.get('name') === name);
 };
 
+//删除指定名字的图层
 export const removeLayerByName = (olmap, name) => {
 
     const layer = findLayerByName(olmap, name);
@@ -50,6 +60,7 @@ export const removeLayerByName = (olmap, name) => {
 
 };
 
+//设置指定名字的图层的属性
 export const setLayerProps = (olmap, name, props) => {
     const layer = findLayerByName(olmap, name);
     if (layer) {
@@ -57,6 +68,7 @@ export const setLayerProps = (olmap, name, props) => {
     }
 };
 
+//使用csv数据生成矢量图层
 export const makeCSVLayer = (olmap, name, csv, fieldIndex) => {
 
     const features = csv
@@ -79,7 +91,8 @@ export const makeCSVLayer = (olmap, name, csv, fieldIndex) => {
         source: new VectorSource({
             features
         }),
-        name: genLayerName(olmap, name)
+        name: genLayerName(olmap, name),
+        style: defaultPointStyle
     });
 
 };
@@ -107,5 +120,19 @@ export const zoomToLayer = (olmap, name) => {
     const layer = findLayerByName(olmap, name);
     if (layer instanceof VectorLayer) {
         olmap.getView().fit(layer.getSource().getExtent());
+    }
+};
+
+export const getLayerType = layer => {
+    if(layer instanceof VectorLayer) {
+        return "VectorLayer";
+    } else if (layer instanceof ImageLayer) {
+        return "ImageLayer";
+    } else if (layer instanceof TileLayer) {
+        return "TileLayer";
+    } else if (layer instanceof Group) {
+        return "Group";
+    } else {
+        return "BaseLayer";
     }
 };

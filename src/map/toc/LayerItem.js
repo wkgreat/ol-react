@@ -3,7 +3,8 @@ import {LayerItemWrapper, LayerToolDiv} from './style';
 import {connect} from 'react-redux';
 import * as olmapActions from '../olmap/store/actionCreator';
 import * as OLMAP from "../olmap/olmapManager";
-import LayerSettingModal from "./LayerSettingModal";
+import RasterLayerSettingModal from "./layerSettingModal/RasterLayerSettingModal";
+import LayerSettingModal from "./layerSettingModal";
 
 
 class LayerItem extends Component {
@@ -15,7 +16,8 @@ class LayerItem extends Component {
             settingVisible: false,
             layerProps: {
                 visible: true
-            }
+            },
+            layer: OLMAP.findLayerByName(this.props.olmap, this.props.layerName)
         };
         this.onMouseEnter = this.onMouseEnter.bind(this);
         this.onMouseLeave = this.onMouseLeave.bind(this);
@@ -46,14 +48,24 @@ class LayerItem extends Component {
                     }}>&#xe603;</span>
                     <span className="iconfont" onClick={this.onSettingClick}>&#xe6ef;</span>
                 </LayerToolDiv>
+                {this.showSettingModal()}
+            </LayerItemWrapper>
+        );
+    }
+
+    showSettingModal() {
+
+        if(this.state.settingVisible) {
+            return (
                 <LayerSettingModal
-                    visible={S.settingVisible}
-                    layer={OLMAP.findLayerByName(P.olmap, P.layerName)}
+                    visible={this.state.settingVisible}
+                    layer={this.state.layer}
                     onOK={this.onSettingOK}
                     onCancle={this.onSettingCancle}
                 />
-            </LayerItemWrapper>
-        );
+            );
+        }
+
     }
 
     onSettingClick() {

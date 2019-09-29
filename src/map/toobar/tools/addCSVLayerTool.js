@@ -60,22 +60,22 @@ class AddCSVLayerTool extends Component {
                         <Radio value={this.csvType.FILE}>CSV文件</Radio>
                         <Radio value={this.csvType.URL}>CSV的URL</Radio>
                     </Radio.Group>
-                    <Divider/>
+                    <br/>
                     {this.getCSVSettingPanel(this.state.inputCSVType)}
-                    <Divider/>
+                    <br/>
                     经度字段:
                     <Select size='small' defaultValue={this.state.lonFieldIndex} onChange={(v)=>this.setState({lonFieldIndex:v})}>
                         {this.getCSVHeadInfo()}
-                    </Select>
+                    </Select><br/>
                     纬度字段:
                     <Select size='small' defaultValue={this.state.latFieldIndex} onChange={(v)=>this.setState({latFieldIndex:v})}>
                         {this.getCSVHeadInfo()}
-                    </Select>
+                    </Select><br/>
                     时间字段:
                     <Select size='small' defaultValue={this.state.timeFieldIndex} onChange={(v)=>this.setState({timeFieldIndex:v})}>
                         <Select.Option value={-1} key={-1}>无时间字段</Select.Option>
                         {this.getCSVHeadInfo()}
-                    </Select>
+                    </Select><br/>
                 </Modal>
 
             </Fragment>
@@ -98,7 +98,7 @@ class AddCSVLayerTool extends Component {
                         <Input value={this.state.inputName} onChange={this.onNameInputChange}/>
                         请粘贴CSV内容:
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                            autosize={{ minRows: 5, maxRows: 15 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                            autosize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             case this.csvType.FILE:
@@ -106,12 +106,13 @@ class AddCSVLayerTool extends Component {
                     <Fragment>
                         请输入图层名称:
                         <Input value={this.state.inputName} onChange={this.onNameInputChange}/>
-                        <Upload.Dragger action={this.readCSVFile}>
-                            <p className="ant-upload-drag-icon"> <Icon type="inbox" /> </p>
-                            <p className="ant-upload-text">Click or drag csv file to this area to upload</p>
-                        </Upload.Dragger>
+                        <Upload action={this.readCSVFile}>
+                            <Button>
+                                <Icon type="upload" /> Upload
+                            </Button>
+                        </Upload>
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                                        autosize={{ minRows: 5, maxRows: 15 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autosize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             case this.csvType.URL:
@@ -127,7 +128,7 @@ class AddCSVLayerTool extends Component {
                             onSearch={value => this.readCSVURL(value)}
                         />
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                                        autosize={{ minRows: 5, maxRows: 15 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autosize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             default:
