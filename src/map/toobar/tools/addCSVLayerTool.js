@@ -64,15 +64,15 @@ class AddCSVLayerTool extends Component {
                     {this.getCSVSettingPanel(this.state.inputCSVType)}
                     <br/>
                     经度字段:
-                    <Select size='small' defaultValue={this.state.lonFieldIndex} onChange={(v)=>this.setState({lonFieldIndex:v})}>
+                    <Select style={{width:'150px'}} size='small' defaultValue={this.state.lonFieldIndex} onChange={(v)=>this.setState({lonFieldIndex:v})}>
                         {this.getCSVHeadInfo()}
                     </Select><br/>
                     纬度字段:
-                    <Select size='small' defaultValue={this.state.latFieldIndex} onChange={(v)=>this.setState({latFieldIndex:v})}>
+                    <Select style={{width:'150px'}} size='small' defaultValue={this.state.latFieldIndex} onChange={(v)=>this.setState({latFieldIndex:v})}>
                         {this.getCSVHeadInfo()}
                     </Select><br/>
                     时间字段:
-                    <Select size='small' defaultValue={this.state.timeFieldIndex} onChange={(v)=>this.setState({timeFieldIndex:v})}>
+                    <Select style={{width:'150px'}} size='small' defaultValue={this.state.timeFieldIndex} onChange={(v)=>this.setState({timeFieldIndex:v})}>
                         <Select.Option value={-1} key={-1}>无时间字段</Select.Option>
                         {this.getCSVHeadInfo()}
                     </Select><br/>

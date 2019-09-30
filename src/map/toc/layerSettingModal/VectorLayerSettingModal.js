@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Modal,Input,Icon} from 'antd';
-import ColorChooser from '../../common/ColorChooser';
-import {defaultPointStyle,getPointStyleByColor} from '../../olmap/olmap';
+import {Modal} from 'antd';
+import {defaultPointStyle} from '../../olmap/olmap';
+import RegularShapePointStyleGenerator from './RegularShapePointStyleGenerator';
 
 class VectorLayerSettingModal extends Component {
 
@@ -12,8 +12,7 @@ class VectorLayerSettingModal extends Component {
             style: defaultPointStyle,
             colorPanelVisible: false
         };
-        this.toggleColorPanel = this.toggleColorPanel.bind(this);
-        this.onColorPanelChange = this.onColorPanelChange.bind(this);
+        this.onStyleChange = this.onStyleChange.bind(this);
     }
 
     render() {
@@ -27,23 +26,15 @@ class VectorLayerSettingModal extends Component {
                 onOk={this.props.onOK}
                 onCancel={this.props.onCancle}
             >
-                填充颜色:<Input addonAfter={<Icon type="setting" onClick={this.toggleColorPanel}/>} defaultValue={this.state.fillColor} />
-                <ColorChooser visible={this.state.colorPanelVisible} onColorChange={this.onColorPanelChange} onOK={this.toggleColorPanel}/>
+                <RegularShapePointStyleGenerator
+                    onChange={this.onStyleChange}>
+                </RegularShapePointStyleGenerator>
             </Modal>
         );
     }
 
-    onColorPanelChange(colorCode) {
-        console.log(colorCode.hex);
-        let layer = this.props.layer;
-        let style = this.state.style;
-        layer.setStyle(getPointStyleByColor(colorCode.hex));
-    }
-
-    toggleColorPanel() {
-        this.setState(preState=>({
-            colorPanelVisible: !preState.colorPanelVisible
-        }));
+    onStyleChange(style){
+        this.props.layer.setStyle(style);
     }
 
 }
