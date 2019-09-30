@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, Input, Modal} from "antd";
+import {Icon, Input, InputNumber} from "antd";
 import ColorChooser from "../../common/ColorChooser";
 import {getPointRegularShapeStyle} from "../../olmap/olmap";
 
@@ -23,17 +23,35 @@ class RegularShapePointStyleGenerator extends Component {
         };
         this.toggleColorPanel = this.toggleColorPanel.bind(this);
         this.onColorPanelChange = this.onColorPanelChange.bind(this);
+        this.onPointsChange = this.onPointsChange.bind(this);
+        this.onStrokeWidthChange = this.onStrokeWidthChange.bind(this);
+        this.onRadiusChange = this.onRadiusChange.bind(this);
+        this.onAngleChange = this.onAngleChange.bind(this);
     }
 
     render() {
         return (
             <div>
+                边数:
+                <InputNumber size='small' style={{width:'50px'}}
+                             defaultValue={0} min={0} max={10} onChange={this.onPointsChange} />
+                边线宽度:
+                <InputNumber size='small' style={{width:'50px'}}
+                             defaultValue={2} min={0} max={100} onChange={this.onStrokeWidthChange} />
+                半径:
+                <InputNumber size='small' style={{width:'50px'}}
+                             defaultValue={10} min={0} max={100} onChange={this.onRadiusChange} />
+                角度:
+                <InputNumber size='small' style={{width:'50px'}}
+                             defaultValue={0} min={0} max={360} onChange={this.onAngleChange} />
+                <br/>
                 填充颜色:
                 <Input
                     addonAfter={<Icon type="setting" onClick={()=>this.toggleColorPanel(this.FILL_COLOR)}/>}
                     defaultValue={this.state.fillColor}
                     value={this.state.fillColor}
                 />
+                边线颜色:
                 <Input
                     addonAfter={<Icon type="setting" onClick={()=>this.toggleColorPanel(this.STROKE_COLOR)}/>}
                     defaultValue={this.state.strokeColor}
@@ -71,7 +89,6 @@ class RegularShapePointStyleGenerator extends Component {
 
 
     onColorPanelChange(colorCode) {
-        debugger;
         switch (this.state.whichColor) {
             case this.FILL_COLOR:
                 this.setState({
@@ -87,6 +104,25 @@ class RegularShapePointStyleGenerator extends Component {
                 break;
         }
     }
+
+
+    onPointsChange(points) {
+        this.setState({points});
+    }
+
+    onStrokeWidthChange(strokeWidth) {
+        this.setState({strokeWidth});
+    }
+
+    onRadiusChange(radius) {
+        this.setState({radius});
+    }
+
+    onAngleChange(angle) {
+        angle = angle * Math.PI /180.0;
+        this.setState({angle});
+    }
+
 
 }
 
