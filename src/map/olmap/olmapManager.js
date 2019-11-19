@@ -7,7 +7,6 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import ImageLayer from "ol/layer/Image";
 import {Group} from "ol/layer";
-import BaseLayer from "ol/layer/Base";
 import {defaultPointStyle} from './olmap';
 
 function* layerIdGenerator() {
@@ -30,13 +29,12 @@ export const genLayerName = (olmap, name) => {
 
 //使用提供的xyz瓦片的url生成图层
 export const makeXYZLayer = (olmap, name, url) => {
-    const layer = new TileLayer({
+    return new TileLayer({
         name: genLayerName(olmap, name),
         source: new XYZ({
             url
         })
     });
-    return layer;
 
 };
 

@@ -3,7 +3,6 @@ import {LayerItemWrapper, LayerToolDiv} from './style';
 import {connect} from 'react-redux';
 import * as olmapActions from '../olmap/store/actionCreator';
 import * as OLMAP from "../olmap/olmapManager";
-import RasterLayerSettingModal from "./layerSettingModal/RasterLayerSettingModal";
 import LayerSettingModal from "./layerSettingModal";
 
 

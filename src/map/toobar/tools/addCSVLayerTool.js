@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Input, Button, Modal,Radio, Divider, Select, Icon, Upload} from 'antd';
+import {Input, Button, Modal,Radio, Select, Icon, Upload} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
 import * as olmapFuncs from "../../olmap/olmapManager";
@@ -151,7 +151,7 @@ class AddCSVLayerTool extends Component {
                 this.getCSVHeadInfo();
                 resolve(reader.result);
             };
-            reader.onerror = error => {
+            reader.onerror = () => {
                 this.setState({inputCSV:""});
                 this.getCSVHeadInfo();
                 console.error("read csv file error");

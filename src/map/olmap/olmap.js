@@ -1,4 +1,3 @@
-import VectorLayer from 'ol/layer/Vector';
 import Style from "ol/style/Style";
 import {Circle, Fill, RegularShape, Stroke} from "ol/style";
 

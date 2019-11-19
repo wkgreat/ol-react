@@ -5,10 +5,6 @@ import RasterLayerSettingModal from "./RasterLayerSettingModal";
 
 class LayerSettingModal extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         return(
@@ -26,10 +22,8 @@ class LayerSettingModal extends Component {
         switch (layerType) {
             case "VectorLayer":
                 return this.vectorLayerSettingModal();
-                break;
             case "ImageLayer":
                 return this.rasterLayerSettingModal();
-                break;
             default:
                 return this.rasterLayerSettingModal();
 

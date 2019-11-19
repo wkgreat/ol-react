@@ -11,7 +11,7 @@ class Olmap extends Component {
         return (
             <Fragment>
                 <HeaderWrapper>
-                    <TitleDiv><img src={logo} height={42}></img>&nbsp;<span>A SIMPLE WEBGIS APP. Author: Ke WANG</span></TitleDiv>
+                    <TitleDiv><img src={logo} height={42} alt='logo'/>&nbsp;<span>A SIMPLE WEBGIS APP. Author: Ke WANG</span></TitleDiv>
                     <MapToolbar/>
                 </HeaderWrapper>
                 <MapDiv id='map'/>
