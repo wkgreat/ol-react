@@ -1,7 +1,7 @@
 name: Node CI
 
-on: 
-  push:
+on:
+  [push, pull-request]:
     branches: 
       - master
 
@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        npm install
-        npm run-script build
+        npm start
+        npm build
       env:
         CI: true

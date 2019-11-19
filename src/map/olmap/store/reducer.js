@@ -43,6 +43,7 @@ export default ((state = defaultState, action)=> {
     switch (action.type) {
         case constants.ADD_LAYER:
             state.olmap.addLayer(action.layer);
+            OLMAP.zoomToLayer(state.olmap,action.layer.get('name'));
             newState = copyState(state);
             newState.layerVersion = newState.layerVersion+1;
             return newState;
