@@ -1,36 +1,25 @@
-## A GIS Implement by OpenLayers and React
+##A GIS Implement by OpenLayers and React
 
-## Components:
+##Components:
 
-### TOC(Table of Contents)
-
-Manage Layers of Map, include order of layers and setting of Layers
-
-### ToolBar
-
-Container of Tool Butttons
-
-#### ADD XYZ Layer
-
-Add XYZ Tiled Layer by XYZ URL
-
-#### ADD CSV Layer
-
-Add Vector Layer from csv Data. Support CSV string, CSV File and CSV URL.
-Also Support the x and y field choosing.
-
++ TOC(Table of Contents)  
+  Manage Layers of Map, include order of layers and setting of Layers  
++ ToolBar  
+  Container of Tool Butttons  
++ ADD XYZ Layer  
+  Add XYZ Tiled Layer by XYZ URL  
++ ADD CSV Layer  
+  Add Vector Layer from csv Data. Support CSV string, CSV File and CSV URL. 
+  Also Support the x and y field choosing.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+##Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run:  
+`npm run build` build the project  
+`npm run start` run and test directly in the project
 
-### `npm start`
-
-### other scripts
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-codesandbox: https://codesandbox.io/embed/github/wkgreat/ol-react/tree/master/
+Runs the app in the development mode.  
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.  
+[Code In sandbox](https://codesandbox.io/embed/github/wkgreat/ol-react/tree/master/)
