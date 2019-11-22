@@ -1,6 +1,6 @@
-##A GIS Implement by OpenLayers and React
+## A GIS Implement by OpenLayers and React
 
-##Components:
+## Components:
 
 + TOC(Table of Contents)  
   Manage Layers of Map, include order of layers and setting of Layers  
@@ -14,9 +14,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##Available Scripts
+## Available Scripts
 
 In the project directory, you can run:  
+`npm install` install the denpendencies  
 `npm run build` build the project  
 `npm run start` run and test directly in the project
 
