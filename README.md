@@ -17,6 +17,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:  
+`npm install` install the denpendencies  
 `npm run build` build the project  
 `npm run start` run and test directly in the project
 
