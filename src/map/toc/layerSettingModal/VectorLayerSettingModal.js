@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Modal} from 'antd';
-import {defaultPointStyle} from '../../olmap/olmap';
+import {defaultPointStyle} from '../../olmap/olmapStyle';
 import RegularShapePointStyleGenerator from './RegularShapePointStyleGenerator';
 
 class VectorLayerSettingModal extends Component {

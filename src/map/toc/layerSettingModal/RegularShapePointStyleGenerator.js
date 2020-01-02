@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Icon, Input, InputNumber} from "antd";
 import ColorChooser from "../../common/ColorChooser";
-import {getPointRegularShapeStyle} from "../../olmap/olmap";
+import {getPointRegularShapeStyle} from "../../olmap/olmapStyle";
 
 class RegularShapePointStyleGenerator extends Component {
 
