@@ -14,6 +14,8 @@ class MapToobar extends Component {
 
                 <tools.AddXYZLayerTool/>
                 <tools.AddCSVLayerTool/>
+                <tools.ToolTemplate/>
+                <tools.AddWKTLayerTool/>
 
             </MapToobarWrapper>
         );

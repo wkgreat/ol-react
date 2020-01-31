@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Input, Button, Modal,Radio, Select, Icon, Upload} from 'antd';
+import {Input, Button, Modal, Radio, Select, Icon, Upload, Divider} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
 import * as olmapFuncs from "../../olmap/olmapManager";
@@ -61,6 +61,7 @@ class AddCSVLayerTool extends Component {
                         <Radio value={this.csvType.URL}>CSV的URL</Radio>
                     </Radio.Group>
                     <br/>
+                    <Divider/>
                     {this.getCSVSettingPanel(this.state.inputCSVType)}
                     <br/>
                     经度字段:
@@ -98,7 +99,7 @@ class AddCSVLayerTool extends Component {
                         <Input value={this.state.inputName} onChange={this.onNameInputChange}/>
                         请粘贴CSV内容:
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                            autosize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                            autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             case this.csvType.FILE:
@@ -112,7 +113,7 @@ class AddCSVLayerTool extends Component {
                             </Button>
                         </Upload>
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                                        autosize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             case this.csvType.URL:
@@ -128,7 +129,7 @@ class AddCSVLayerTool extends Component {
                             onSearch={value => this.readCSVURL(value)}
                         />
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                                        autosize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             default:
