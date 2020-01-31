@@ -10,7 +10,8 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import ImageLayer from "ol/layer/Image";
 import {Group} from "ol/layer";
-import {defaultPointStyle} from './olmapStyle';
+import * as STYLE from './olmapStyle';
+import WKT from "ol/format/WKT";
 
 
 //layer编号生成器
@@ -119,9 +120,31 @@ export const makeCSVLayer = (olmap, name, csv, fieldIndex) => {
             features
         }),
         name: genLayerName(olmap, name),
-        style: defaultPointStyle
+        style: STYLE.getDefaultStyle()
     });
 
+};
+
+export const makeWKTLayer = (olmap, name, wkts) => {
+    let wktFormat = new WKT();
+    wkts = wkts.trim();
+    if(!wkts) {return null;}
+    let features = wkts
+        .split("\n")
+        .filter(s => s != null && s.length > 0)
+        .map(wkt=>
+            wktFormat.readFeature(wkt, {
+                dataProjection: 'EPSG:4326',
+                featureProjection: 'EPSG:3857'
+            })
+        );
+    return new VectorLayer({
+        source: new VectorSource({
+            features
+        }),
+        name: genLayerName(olmap, name),
+        style: STYLE.getDefaultStyle()
+    });
 };
 
 /**
