@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import * as OLMAP from '../../olmap/olmapManager';
-import VectorLayerSettingModal from "./VectorLayerSettingModal";
+import VectorLayerSetting from "./VectorLayerSetting";
 import RasterLayerSettingModal from "./RasterLayerSettingModal";
 
-class LayerSettingModal extends Component {
+class LayerSetting extends Component {
 
     render() {
 
@@ -26,18 +26,18 @@ class LayerSettingModal extends Component {
                 return this.rasterLayerSettingModal();
             default:
                 return this.rasterLayerSettingModal();
-
         }
 
     }
 
     vectorLayerSettingModal() {
+        console.log("Setting Model: " + this.props.visible);
         return (
-            <VectorLayerSettingModal
+            <VectorLayerSetting
                 visible={this.props.visible}
                 layer={this.props.layer}
                 onOK={this.props.onOK}
-                onCancle={this.props.onCancle}
+                onCancel={this.props.onCancel}
             />
         );
     }
@@ -48,7 +48,7 @@ class LayerSettingModal extends Component {
                 visible={this.props.visible}
                 layer={this.props.layer}
                 onOK={this.props.onOK}
-                onCancle={this.props.onCancle}
+                onCancel={this.props.onCancel}
             />
         );
 
@@ -56,4 +56,4 @@ class LayerSettingModal extends Component {
 
 }
 
-export default LayerSettingModal;
+export default LayerSetting;
