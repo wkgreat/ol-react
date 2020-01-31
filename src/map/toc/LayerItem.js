@@ -3,7 +3,7 @@ import {LayerItemWrapper, LayerToolDiv} from './style';
 import {connect} from 'react-redux';
 import * as olmapActions from '../olmap/store/actionCreator';
 import * as OLMAP from "../olmap/olmapManager";
-import LayerSettingModal from "./layerSettingModal";
+import LayerSetting from "./layerSetting";
 
 
 class LayerItem extends Component {
@@ -56,11 +56,11 @@ class LayerItem extends Component {
 
         if(this.state.settingVisible) {
             return (
-                <LayerSettingModal
+                <LayerSetting
                     visible={this.state.settingVisible}
                     layer={this.state.layer}
                     onOK={this.onSettingOK}
-                    onCancle={this.onSettingCancle}
+                    onCancel={this.onSettingCancle}
                 />
             );
         }

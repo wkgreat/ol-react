@@ -6,22 +6,11 @@ class RasterLayerSettingModal extends Component {
     constructor(props) {
         super(props);
         this.state= {
-            visible: props.visible,
-            onOK: props.onOK,
-            onCancle: props.onCancle,
             defaultSetting: this.defaultSetting(this.props.layer)
         };
         this.onSettingOK = this.onSettingOK.bind(this);
         this.onSettingCancle = this.onSettingCancle.bind(this);
         this.onSettingChange = this.onSettingChange.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        this.setState({
-            visible: nextProps.visible,
-            onOK: nextProps.onOK,
-            onCancle: nextProps.onCancle,
-        });
     }
 
     render() {
@@ -31,7 +20,7 @@ class RasterLayerSettingModal extends Component {
         return(
             <Modal
                 title = {"栅格图层 "+layer.get('name')+" 属性设置："}
-                visible={this.state.visible}
+                visible={this.props.visible}
                 onOk={this.onSettingOK}
                 onCancel={this.onSettingCancle}
             >
@@ -50,11 +39,11 @@ class RasterLayerSettingModal extends Component {
     }
 
     onSettingOK() {
-        this.state.onOK();
+        this.props.onOK();
     }
     onSettingCancle() {
         this.props.layer.setProperties(this.state.defaultSetting);
-        this.state.onCancle();
+        this.props.onCancel();
     }
 
     defaultSetting(layer) {
