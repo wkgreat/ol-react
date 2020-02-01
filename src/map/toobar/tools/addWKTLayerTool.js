@@ -15,7 +15,6 @@ class AddWKTLayerTool extends Component {
     constructor(props){
         super(props);
         this.state = {
-            modalVisible: false, //对话框是否显示
             layerName: "wktVector",
             inputWKT: ""
         };
@@ -30,25 +29,22 @@ class AddWKTLayerTool extends Component {
 
     render() {
         return (
-            <Fragment>
-                <Button ghost={false} onClick={this.onToolButtonClick} block={true}>添加WKT矢量图层</Button>
-                <Modal
-                    title='添加WKT矢量图层'
-                    visible={this.state.modalVisible}
-                    onOk={this.onModalOK}
-                    onCancel={this.onModalCancel}>
+            <Modal
+                title='添加WKT矢量图层'
+                visible={this.props.visible}
+                onOk={this.onModalOK}
+                onCancel={this.onModalCancel}>
 
-                    图层名称:
-                    <Input value={this.state.layerName} onChange={this.changeLayerName}/>
-                    WKT字符串:
-                    <Input.TextArea
-                        placeholder='WKT数据'
-                        autoSize={{minRows: 5, maxRows: 8}}
-                        value={this.state.inputWKT}
-                        onChange={this.changeTextArea}
-                    />
-                </Modal>
-            </Fragment>
+                图层名称:
+                <Input value={this.state.layerName} onChange={this.changeLayerName}/>
+                WKT字符串:
+                <Input.TextArea
+                    placeholder='WKT数据'
+                    autoSize={{minRows: 5, maxRows: 8}}
+                    value={this.state.inputWKT}
+                    onChange={this.changeTextArea}
+                />
+            </Modal>
         );
     }
 
@@ -65,17 +61,13 @@ class AddWKTLayerTool extends Component {
         this.toggleModal();
         console.log("Button Clicked! Tool-Template");
     }
-    toggleModal() {
-        this.setState((preState)=>({
-            modalVisible: !preState.modalVisible
-        }));
-    }
+
     onModalOK() {
         this.props.addWKTLayer(this.props.olmap, this.state.layerName, this.state.inputWKT);
-        this.toggleModal();
+        this.props.onOK();
     }
     onModalCancel() {
-        this.toggleModal();
+        this.props.onCancel();
     }
 
 }

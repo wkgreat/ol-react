@@ -12,11 +12,11 @@ export const TitleDiv = styled.div`
   z-index: 9;
   
   width: 100%;
-  height: 42px;
+  height: 48px;
   
   padding-left: 10px;
-  background-color: rgba(85,255,236,0.2);
-  border-bottom: 2px solid rgba(85,255,236,0.9);
+  //background-color: rgba(85,255,236,0.2);
+  //border-bottom: 2px solid rgba(85,255,236,0.9);
   
   color: rgba(255,52,231,0.9);
   font: bold 30px sans-serif;
@@ -33,11 +33,6 @@ export const TitleDiv = styled.div`
     font: bold 15px sans-serif;
   }
   
-`;
-
-export const MapDiv = styled.div`
-    height: 100%;
-    background-color: #040508;
 `;
 
 export const TOCWrapper = styled.div`

@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {Input, Button, Modal, Radio, Select, Icon, Upload, Divider} from 'antd';
+import {Input, Button, Modal, Radio, Select, Icon, Upload, Divider, Menu} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
-import * as olmapFuncs from "../../olmap/olmapManager";
+import * as OLMAP from "../../olmap/olmapManager";
 import axios from 'axios';
 
 class AddCSVLayerTool extends Component {
@@ -18,20 +18,16 @@ class AddCSVLayerTool extends Component {
 
         this.state = {
 
-            modalVisible: false,
             okDisabled: false,
-
             inputName: 'CSV_Vector',
             inputCSVType: this.csvType.STRING,
             inputCSV: '',
-
             lonFieldIndex:0,
             latFieldIndex:1,
             timeFieldIndex:-1
 
         };
 
-        this.onButtonClick = this.onButtonClick.bind(this);
         this.onRadioChange = this.onRadioChange.bind(this);
         this.onNameInputChange = this.onNameInputChange.bind(this);
         this.onCSVInputChange = this.onCSVInputChange.bind(this);
@@ -39,47 +35,43 @@ class AddCSVLayerTool extends Component {
         this.readCSVURL = this.readCSVURL.bind(this);
         this.getCSVHeadInfo = this.getCSVHeadInfo.bind(this);
         this.onModalOK = this.onModalOK.bind(this);
-        this.onModalCancle = this.onModalCancle.bind(this);
+        this.onModalCancel = this.onModalCancel.bind(this);
     }
 
     render() {
 
         return (
-            <Fragment>
+            <Modal
+                title = '添加CSV矢量图层'
+                visible={this.props.visible}
+                onOk={this.onModalOK}
+                onCancel={this.onModalCancel}
+                okButtonProps={{disabled:this.state.okDisabled}}
+            >
+                <Radio.Group onChange={this.onRadioChange} value={this.state.inputCSVType}>
+                    <Radio value={this.csvType.STRING}>CSV字符串</Radio>
+                    <Radio value={this.csvType.FILE}>CSV文件</Radio>
+                    <Radio value={this.csvType.URL}>CSV的URL</Radio>
+                </Radio.Group>
 
-                <Button ghost={false} onClick={this.onButtonClick} block={true}>添加CSV矢量图层</Button>
-                <Modal
-                    title = '添加CSV矢量图层'
-                    visible={this.state.modalVisible}
-                    onOk={this.onModalOK}
-                    onCancel={this.onModalCancle}
-                    okButtonProps={{disabled:this.state.okDisabled}}
-                >
-                    <Radio.Group onChange={this.onRadioChange} value={this.state.inputCSVType}>
-                        <Radio value={this.csvType.STRING}>CSV字符串</Radio>
-                        <Radio value={this.csvType.FILE}>CSV文件</Radio>
-                        <Radio value={this.csvType.URL}>CSV的URL</Radio>
-                    </Radio.Group>
-                    <br/>
-                    <Divider/>
-                    {this.getCSVSettingPanel(this.state.inputCSVType)}
-                    <br/>
-                    经度字段:
-                    <Select style={{width:'150px'}} size='small' defaultValue={this.state.lonFieldIndex} onChange={(v)=>this.setState({lonFieldIndex:v})}>
-                        {this.getCSVHeadInfo()}
-                    </Select><br/>
-                    纬度字段:
-                    <Select style={{width:'150px'}} size='small' defaultValue={this.state.latFieldIndex} onChange={(v)=>this.setState({latFieldIndex:v})}>
-                        {this.getCSVHeadInfo()}
-                    </Select><br/>
-                    时间字段:
-                    <Select style={{width:'150px'}} size='small' defaultValue={this.state.timeFieldIndex} onChange={(v)=>this.setState({timeFieldIndex:v})}>
-                        <Select.Option value={-1} key={-1}>无时间字段</Select.Option>
-                        {this.getCSVHeadInfo()}
-                    </Select><br/>
-                </Modal>
+                <Divider/>
+                {this.getCSVSettingPanel(this.state.inputCSVType)}
+                <br/>
 
-            </Fragment>
+                经度字段:
+                <Select style={{width:'150px'}} size='small' defaultValue={this.state.lonFieldIndex} onChange={(v)=>this.setState({lonFieldIndex:v})}>
+                    {this.getCSVHeadInfo()}
+                </Select><br/>
+                纬度字段:
+                <Select style={{width:'150px'}} size='small' defaultValue={this.state.latFieldIndex} onChange={(v)=>this.setState({latFieldIndex:v})}>
+                    {this.getCSVHeadInfo()}
+                </Select><br/>
+                时间字段:
+                <Select style={{width:'150px'}} size='small' defaultValue={this.state.timeFieldIndex} onChange={(v)=>this.setState({timeFieldIndex:v})}>
+                    <Select.Option value={-1} key={-1}>无时间字段</Select.Option>
+                    {this.getCSVHeadInfo()}
+                </Select><br/>
+            </Modal>
         );
 
     }
@@ -106,12 +98,11 @@ class AddCSVLayerTool extends Component {
                 return (
                     <Fragment>
                         请输入图层名称:
-                        <Input value={this.state.inputName} onChange={this.onNameInputChange}/>
-                        <Upload action={this.readCSVFile}>
-                            <Button>
-                                <Icon type="upload" /> Upload
-                            </Button>
-                        </Upload>
+                        <Input value={this.state.inputName} onChange={this.onNameInputChange} addonAfter={
+                            <Upload action={this.readCSVFile} showUploadList={false}>
+                                <Icon type="upload"/>
+                            </Upload>
+                        }/>
                         <Input.TextArea placeholder='Please Enter CSV Text'
                                         autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
                     </Fragment>
@@ -182,28 +173,17 @@ class AddCSVLayerTool extends Component {
         }));
     }
 
-
-    onButtonClick() {
-        this.toggleModal();
-    }
-
     onModalOK() {
-        this.toggleModal();
         this.props.addLayer(this.props.olmap,this.state.inputName,this.state.inputCSV,{
             lon: this.state.lonFieldIndex,
             lat: this.state.latFieldIndex,
             time: this.state.timeFieldIndex
         });
+        this.props.onOK();
     }
 
-    onModalCancle() {
-        this.toggleModal();
-    }
-
-    toggleModal() {
-        this.setState((preState)=>({
-            modalVisible: !preState.modalVisible
-        }));
+    onModalCancel() {
+        this.props.onCancel();
     }
 
     getCSVHeadInfo() {
@@ -220,7 +200,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addLayer: (olmap, name, csv, fieldIndex) => {
-        const layer = olmapFuncs.makeCSVLayer(olmap,name,csv,fieldIndex);
+        const layer = OLMAP.makeCSVLayer(olmap,name,csv,fieldIndex);
         const action = actionCreators.addLayerAction(layer);
         dispatch(action);
     }
