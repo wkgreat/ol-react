@@ -38,7 +38,7 @@ class MapToobar extends Component {
                                 <Menu.ItemGroup title="栅格图层">
 
                                     <Menu.Item key="setting:addXYZLayer"
-                                               onClick={this.setVisible("addXYZLayerToolVisible")}>添加WKT矢量图层
+                                               onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
                                     </Menu.Item>
                                 </Menu.ItemGroup>
                                 <Menu.ItemGroup title="矢量图层">
