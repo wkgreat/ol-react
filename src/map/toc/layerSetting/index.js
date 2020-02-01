@@ -7,7 +7,7 @@ class LayerSetting extends Component {
 
     render() {
 
-        return(
+        return (
             <Fragment>
                 {this.settingModalChooser()}
             </Fragment>

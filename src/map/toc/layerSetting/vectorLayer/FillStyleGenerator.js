@@ -21,7 +21,7 @@ class FillStyleGenerator extends Component {
     render() {
         return (
             <div>
-                <Row gutter={[6,6]}>
+                <Row gutter={[6, 6]}>
                     <Col>
                         <span>填充颜色:</span>
                         <Input
@@ -39,12 +39,12 @@ class FillStyleGenerator extends Component {
         );
     }
 
-    setProp(key,value) {
-        this.setState({key:value});
+    setProp(key, value) {
+        this.setState({key: value});
     }
 
     onColorChange(colorCode) {
-        this.setState({color:STYLE.rgbObjectToArray(colorCode.rgb)});
+        this.setState({color: STYLE.rgbObjectToArray(colorCode.rgb)});
     }
 
     /**
@@ -52,11 +52,11 @@ class FillStyleGenerator extends Component {
      * */
     shouldUpdateStyle(prevState) {
         return Object.keys(this.state)
-            .some(k=>prevState[k]!==this.state[k]);
+            .some(k => prevState[k] !== this.state[k]);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.shouldUpdateStyle(prevState)) {
+        if (this.shouldUpdateStyle(prevState)) {
             let fill = STYLE.getFill(this.state);
             this.props.onChange(fill);
         }

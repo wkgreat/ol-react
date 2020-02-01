@@ -1,27 +1,27 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Group} from "ol/layer";
-import {TOCWrapper,TOCTitle} from './style';
+import {TOCTitle, TOCWrapper} from './style';
 import LayerItem from './LayerItem';
 
 const TOC = (props) => {
 
-    const { olmap } = props;
+    const {olmap} = props;
 
     const makeLayerList = (layers) => {
 
-        return layers.getArray().map(layer=>{
+        return layers.getArray().map(layer => {
             const name = layer.get('name');
-            if(layer instanceof Group) { // 如果是groupLayer
+            if (layer instanceof Group) { // 如果是groupLayer
                 return (
                     <Fragment>
-                        <LayerItem layerName={name} key={name} />
+                        <LayerItem layerName={name} key={name}/>
                         {makeLayerList(layer.getLayers())}
                     </Fragment>
                 );
             } else {
                 return (
-                    <LayerItem layerName={name} key={name} />
+                    <LayerItem layerName={name} key={name}/>
                 );
             }
 
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => ({
     olmap: state.olmap.olmap
 });
 
-export default connect(mapStateToProps,null)(TOC);
+export default connect(mapStateToProps, null)(TOC);

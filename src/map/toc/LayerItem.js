@@ -54,7 +54,7 @@ class LayerItem extends Component {
 
     showSettingModal() {
 
-        if(this.state.settingVisible) {
+        if (this.state.settingVisible) {
             return (
                 <LayerSetting
                     visible={this.state.settingVisible}

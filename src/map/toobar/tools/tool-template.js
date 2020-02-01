@@ -10,7 +10,7 @@ class ToolTemplate extends Component {
     /**
      * 构造器
      * */
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             modalVisible: false //对话框是否显示
@@ -27,7 +27,7 @@ class ToolTemplate extends Component {
             <Fragment>
                 <Button ghost={false} onClick={this.onToolButtonClick} block={true}>示例工具按钮</Button>
                 <Modal
-                    title = '示例工具'
+                    title='示例工具'
                     visible={this.state.modalVisible}
                     onOk={this.onModalOK}
                     onCancel={this.onModalCancel}>
@@ -40,25 +40,24 @@ class ToolTemplate extends Component {
         this.toggleModal();
         console.log("Button Clicked! Tool-Template");
     }
+
     toggleModal() {
-        this.setState((preState)=>({
+        this.setState((preState) => ({
             modalVisible: !preState.modalVisible
         }));
     }
+
     onModalOK() {
         this.toggleModal();
     }
+
     onModalCancel() {
         this.toggleModal();
     }
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({});
 
-});
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-export default connect(mapStateToProps,mapDispatchToProps)(ToolTemplate);
+export default connect(mapStateToProps, mapDispatchToProps)(ToolTemplate);

@@ -33,36 +33,36 @@ class RegularShapePointStyleGenerator extends Component {
     render() {
         return (
             <div>
-                <Row gutter={[6,6]}>
+                <Row gutter={[6, 6]}>
                     <Col span={6}>
                         <span>边数:</span>
                     </Col>
-                    <Col span={6} >
-                        <InputNumber size='small' style={{width:'50px'}}
-                             defaultValue={0} min={0} max={10} onChange={this.onPointsChange} />
+                    <Col span={6}>
+                        <InputNumber size='small' style={{width: '50px'}}
+                                     defaultValue={0} min={0} max={10} onChange={this.onPointsChange}/>
                     </Col>
                     <Col span={6}>
                         <span>边线宽度:</span>
                     </Col>
                     <Col span={6}>
-                        <InputNumber size='small' style={{width:'50px'}}
-                             defaultValue={2} min={0} max={100} onChange={this.onStrokeWidthChange} />
+                        <InputNumber size='small' style={{width: '50px'}}
+                                     defaultValue={2} min={0} max={100} onChange={this.onStrokeWidthChange}/>
                     </Col>
                 </Row>
-                <Row gutter={[6,6]}>
+                <Row gutter={[6, 6]}>
                     <Col span={6}>
                         <span>半径:</span>
                     </Col>
                     <Col span={6}>
-                        <InputNumber size='small' style={{width:'50px'}}
-                             defaultValue={10} min={0} max={100} onChange={this.onRadiusChange} />
+                        <InputNumber size='small' style={{width: '50px'}}
+                                     defaultValue={10} min={0} max={100} onChange={this.onRadiusChange}/>
                     </Col>
                     <Col span={6}>
                         <span>角度:</span>
                     </Col>
                     <Col span={6}>
-                        <InputNumber size='small' style={{width:'50px'}}
-                             defaultValue={0} min={0} max={360} onChange={this.onAngleChange} />
+                        <InputNumber size='small' style={{width: '50px'}}
+                                     defaultValue={0} min={0} max={360} onChange={this.onAngleChange}/>
                     </Col>
                 </Row>
                 <span>填充颜色:</span>
@@ -93,12 +93,12 @@ class RegularShapePointStyleGenerator extends Component {
      * */
     shouldUpdateStyle(prevState) {
         return Object.keys(this.state)
-            .filter(k=>k!=='colorPanelVisible')
-            .some(k=>prevState[k]!==this.state[k]);
+            .filter(k => k !== 'colorPanelVisible')
+            .some(k => prevState[k] !== this.state[k]);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.shouldUpdateStyle(prevState)) {
+        if (this.shouldUpdateStyle(prevState)) {
             let image = STYLE.getPointRegularShapeImage(this.state);
             this.props.onChange(image);
         }
@@ -110,6 +110,7 @@ class RegularShapePointStyleGenerator extends Component {
             fillColor: Object.values(colorCode.rgb)
         });
     }
+
     strokeColorChange(colorCode) {
         this.setState({
             strokeColor: Object.values(colorCode.rgb)
@@ -130,7 +131,7 @@ class RegularShapePointStyleGenerator extends Component {
     }
 
     onAngleChange(angle) {
-        angle = angle * Math.PI /180.0;
+        angle = angle * Math.PI / 180.0;
         this.setState({angle});
     }
 

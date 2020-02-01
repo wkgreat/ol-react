@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button} from 'antd';
-import { CompactPicker } from 'react-color';
+import {CompactPicker} from 'react-color';
 
 const ColorChooser = (props) => {
-    if(props.visible) {
+    if (props.visible) {
         return (
             <div>
                 <CompactPicker onChange={props.onColorChange}/>

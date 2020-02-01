@@ -1,9 +1,5 @@
-import React, {Component,Fragment} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import MapToolbar from "../toobar";
-import TOC from '../toc/';
-import {HeaderWrapper, TitleDiv,TOCWrapper} from '../style';
-import logo from '../static/logo.gif';
 import styled from "styled-components";
 
 const id = "Olmap-div";
@@ -25,9 +21,15 @@ class Olmap extends Component {
 
     componentDidMount() {
         this.props.olmap.setTarget(id);
-        this.props.olmap.on("change:propertychange",()=>{console.log("map change")});
-        this.props.olmap.on("click",()=>{console.log("map click")});
-        this.props.olmap.getLayers().on("change",()=>{console.log("layers change")});
+        this.props.olmap.on("change:propertychange", () => {
+            console.log("map change")
+        });
+        this.props.olmap.on("click", () => {
+            console.log("map click")
+        });
+        this.props.olmap.getLayers().on("change", () => {
+            console.log("layers change")
+        });
     }
 
 
@@ -41,4 +43,4 @@ const mapStateToProps = (state) => ({
     olmap: state.olmap.olmap
 });
 
-export default connect(mapStateToProps,null)(Olmap);
+export default connect(mapStateToProps, null)(Olmap);

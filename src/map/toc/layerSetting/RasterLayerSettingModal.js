@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Modal, Switch, Slider, Drawer, Button} from 'antd';
+import {Button, Drawer, Slider, Switch} from 'antd';
 
 class RasterLayerSettingModal extends Component {
 
     constructor(props) {
         super(props);
-        this.state= {
+        this.state = {
             defaultSetting: this.defaultSetting(this.props.layer)
         };
         this.onSettingOK = this.onSettingOK.bind(this);
@@ -17,20 +17,34 @@ class RasterLayerSettingModal extends Component {
 
         const {layer} = this.props;
 
-        return(
+        return (
             <Drawer
-                title = {this.title(layer.get('name'))}
+                title={this.title(layer.get('name'))}
                 placement='right'
                 width={350}
                 onClose={this.onSettingOK}
                 visible={this.props.visible}
             >
-                Brightness: <Slider defaultValue={layer.get('brightness')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('brightness',value)}}/>
-                Contrast: <Slider defaultValue={layer.get('contrast')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('contrast',value)}}/>
-                Hue: <Slider defaultValue={layer.get('hue')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('hue',value)}}/>
-                Astruation: <Slider defaultValue={layer.get('astruation')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('astruation',value)}}/>
-                Opacity: <Slider defaultValue={layer.get('opacity')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('opacity',value)}}/>
-                Visible: <Switch defaultChecked={layer.get('visible')} onChange={(checked)=>{this.onSettingChange('visible',checked)}}/>
+                Brightness: <Slider defaultValue={layer.get('brightness')} min={0} max={1} step={0.1}
+                                    onChange={(value) => {
+                                        this.onSettingChange('brightness', value)
+                                    }}/>
+                Contrast: <Slider defaultValue={layer.get('contrast')} min={0} max={1} step={0.1} onChange={(value) => {
+                this.onSettingChange('contrast', value)
+            }}/>
+                Hue: <Slider defaultValue={layer.get('hue')} min={0} max={1} step={0.1} onChange={(value) => {
+                this.onSettingChange('hue', value)
+            }}/>
+                Astruation: <Slider defaultValue={layer.get('astruation')} min={0} max={1} step={0.1}
+                                    onChange={(value) => {
+                                        this.onSettingChange('astruation', value)
+                                    }}/>
+                Opacity: <Slider defaultValue={layer.get('opacity')} min={0} max={1} step={0.1} onChange={(value) => {
+                this.onSettingChange('opacity', value)
+            }}/>
+                Visible: <Switch defaultChecked={layer.get('visible')} onChange={(checked) => {
+                this.onSettingChange('visible', checked)
+            }}/>
             </Drawer>
         );
     }
@@ -45,20 +59,21 @@ class RasterLayerSettingModal extends Component {
         );
     }
 
-    onSettingChange(key,value) {
-        this.props.layer.set(key,value);
+    onSettingChange(key, value) {
+        this.props.layer.set(key, value);
     }
 
     onSettingOK() {
         this.props.onOK();
     }
+
     onSettingCancle() {
         this.props.layer.setProperties(this.state.defaultSetting);
         this.props.onCancel();
     }
 
     defaultSetting(layer) {
-        return layer?layer.getProperties():{};
+        return layer ? layer.getProperties() : {};
     }
 
 }

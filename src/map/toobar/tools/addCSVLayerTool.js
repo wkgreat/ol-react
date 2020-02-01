@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Input, Button, Modal, Radio, Select, Icon, Upload, Divider, Menu} from 'antd';
+import {Divider, Icon, Input, Modal, Radio, Select, Upload} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
 import * as OLMAP from "../../olmap/olmapManager";
@@ -22,9 +22,9 @@ class AddCSVLayerTool extends Component {
             inputName: 'CSV_Vector',
             inputCSVType: this.csvType.STRING,
             inputCSV: '',
-            lonFieldIndex:0,
-            latFieldIndex:1,
-            timeFieldIndex:-1
+            lonFieldIndex: 0,
+            latFieldIndex: 1,
+            timeFieldIndex: -1
 
         };
 
@@ -42,11 +42,11 @@ class AddCSVLayerTool extends Component {
 
         return (
             <Modal
-                title = '添加CSV矢量图层'
+                title='添加CSV矢量图层'
                 visible={this.props.visible}
                 onOk={this.onModalOK}
                 onCancel={this.onModalCancel}
-                okButtonProps={{disabled:this.state.okDisabled}}
+                okButtonProps={{disabled: this.state.okDisabled}}
             >
                 <Radio.Group onChange={this.onRadioChange} value={this.state.inputCSVType}>
                     <Radio value={this.csvType.STRING}>CSV字符串</Radio>
@@ -59,15 +59,18 @@ class AddCSVLayerTool extends Component {
                 <br/>
 
                 经度字段:
-                <Select style={{width:'150px'}} size='small' defaultValue={this.state.lonFieldIndex} onChange={(v)=>this.setState({lonFieldIndex:v})}>
+                <Select style={{width: '150px'}} size='small' defaultValue={this.state.lonFieldIndex}
+                        onChange={(v) => this.setState({lonFieldIndex: v})}>
                     {this.getCSVHeadInfo()}
                 </Select><br/>
                 纬度字段:
-                <Select style={{width:'150px'}} size='small' defaultValue={this.state.latFieldIndex} onChange={(v)=>this.setState({latFieldIndex:v})}>
+                <Select style={{width: '150px'}} size='small' defaultValue={this.state.latFieldIndex}
+                        onChange={(v) => this.setState({latFieldIndex: v})}>
                     {this.getCSVHeadInfo()}
                 </Select><br/>
                 时间字段:
-                <Select style={{width:'150px'}} size='small' defaultValue={this.state.timeFieldIndex} onChange={(v)=>this.setState({timeFieldIndex:v})}>
+                <Select style={{width: '150px'}} size='small' defaultValue={this.state.timeFieldIndex}
+                        onChange={(v) => this.setState({timeFieldIndex: v})}>
                     <Select.Option value={-1} key={-1}>无时间字段</Select.Option>
                     {this.getCSVHeadInfo()}
                 </Select><br/>
@@ -77,9 +80,9 @@ class AddCSVLayerTool extends Component {
     }
 
     onRadioChange = e => {
-      this.setState({
-          inputCSVType: e.target.value
-      })
+        this.setState({
+            inputCSVType: e.target.value
+        })
     };
 
     getCSVSettingPanel(csvType) {
@@ -91,7 +94,8 @@ class AddCSVLayerTool extends Component {
                         <Input value={this.state.inputName} onChange={this.onNameInputChange}/>
                         请粘贴CSV内容:
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                            autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autoSize={{minRows: 5, maxRows: 8}} value={this.state.inputCSV}
+                                        onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             case this.csvType.FILE:
@@ -104,7 +108,8 @@ class AddCSVLayerTool extends Component {
                             </Upload>
                         }/>
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                                        autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autoSize={{minRows: 5, maxRows: 8}} value={this.state.inputCSV}
+                                        onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             case this.csvType.URL:
@@ -120,7 +125,8 @@ class AddCSVLayerTool extends Component {
                             onSearch={value => this.readCSVURL(value)}
                         />
                         <Input.TextArea placeholder='Please Enter CSV Text'
-                                        autoSize={{ minRows: 5, maxRows: 8 }} value={this.state.inputCSV} onChange={this.onCSVInputChange}/>
+                                        autoSize={{minRows: 5, maxRows: 8}} value={this.state.inputCSV}
+                                        onChange={this.onCSVInputChange}/>
                     </Fragment>
                 );
             default:
@@ -135,16 +141,16 @@ class AddCSVLayerTool extends Component {
     }
 
     readCSVFile(file) {
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsText(file);
             reader.onload = () => {
-                this.setState({inputCSV:reader.result});
+                this.setState({inputCSV: reader.result});
                 this.getCSVHeadInfo();
                 resolve(reader.result);
             };
             reader.onerror = () => {
-                this.setState({inputCSV:""});
+                this.setState({inputCSV: ""});
                 this.getCSVHeadInfo();
                 console.error("read csv file error");
                 reject("");
@@ -153,13 +159,13 @@ class AddCSVLayerTool extends Component {
     }
 
     readCSVURL(url) {
-        if(url) {
-            axios.get(url).then(res=>{
+        if (url) {
+            axios.get(url).then(res => {
                 const data = res.data;
-                this.setState({inputCSV:data});
+                this.setState({inputCSV: data});
                 this.getCSVHeadInfo();
-            }).catch(e=>{
-                this.setState({inputCSV:""});
+            }).catch(e => {
+                this.setState({inputCSV: ""});
                 this.getCSVHeadInfo();
                 console.error("csv url error");
             })
@@ -168,13 +174,13 @@ class AddCSVLayerTool extends Component {
 
     onNameInputChange(e) {
         const inputName = e.target.value;
-        this.setState((preState)=>({
+        this.setState((preState) => ({
             inputName
         }));
     }
 
     onModalOK() {
-        this.props.addLayer(this.props.olmap,this.state.inputName,this.state.inputCSV,{
+        this.props.addLayer(this.props.olmap, this.state.inputName, this.state.inputCSV, {
             lon: this.state.lonFieldIndex,
             lat: this.state.latFieldIndex,
             time: this.state.timeFieldIndex
@@ -190,7 +196,7 @@ class AddCSVLayerTool extends Component {
         const csv = this.state.inputCSV;
         const head = csv.split("\n")[0];
         const fields = head.split(",");
-        return fields.map((field,index)=><Select.Option value={index} key={index}>{field}</Select.Option>);
+        return fields.map((field, index) => <Select.Option value={index} key={index}>{field}</Select.Option>);
     }
 }
 
@@ -200,10 +206,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addLayer: (olmap, name, csv, fieldIndex) => {
-        const layer = OLMAP.makeCSVLayer(olmap,name,csv,fieldIndex);
+        const layer = OLMAP.makeCSVLayer(olmap, name, csv, fieldIndex);
         const action = actionCreators.addLayerAction(layer);
         dispatch(action);
     }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddCSVLayerTool);
+export default connect(mapStateToProps, mapDispatchToProps)(AddCSVLayerTool);
