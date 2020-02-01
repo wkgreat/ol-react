@@ -10,10 +10,8 @@ class AddXYZLayerTool extends Component {
         super(props);
         this.state = {
             inputName: 'OSM Black and White',
-            inputURL: 'http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-            modalVisible: false
+            inputURL: 'http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
         };
-        this.onButtonClick = this.onButtonClick.bind(this);
         this.onURLInputChange = this.onURLInputChange.bind(this);
         this.onNameInputChange = this.onNameInputChange.bind(this);
         this.onModalOK = this.onModalOK.bind(this);
@@ -27,10 +25,9 @@ class AddXYZLayerTool extends Component {
         return (
             <Fragment>
 
-                <Button ghost={false} onClick={this.onButtonClick} block={true}>添加XYZ图层</Button>
                 <Modal
                     title = '添加XYZ图层'
-                    visible={this.state.modalVisible}
+                    visible={this.props.visible}
                     onOk={()=>this.onModalOK(olmap,onAddXYZLayer)}
                     onCancel={this.onModalCancle}
                 >
@@ -58,24 +55,13 @@ class AddXYZLayerTool extends Component {
         }));
     }
 
-
-    onButtonClick() {
-        this.toggleModal();
-    }
-
     onModalOK(olmap, addLayer) {
-        this.toggleModal();
         addLayer(olmap,this.state.inputName,this.state.inputURL);
+        this.props.onOK();
     }
 
     onModalCancle() {
-        this.toggleModal();
-    }
-
-    toggleModal() {
-        this.setState((preState)=>({
-            modalVisible: !preState.modalVisible
-        }));
+        this.props.onCancel();
     }
 
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal,Switch,Slider} from 'antd';
+import {Modal, Switch, Slider, Drawer, Button} from 'antd';
 
 class RasterLayerSettingModal extends Component {
 
@@ -18,11 +18,12 @@ class RasterLayerSettingModal extends Component {
         const {layer} = this.props;
 
         return(
-            <Modal
-                title = {"栅格图层 "+layer.get('name')+" 属性设置："}
+            <Drawer
+                title = {this.title(layer.get('name'))}
+                placement='right'
+                width={350}
+                onClose={this.onSettingOK}
                 visible={this.props.visible}
-                onOk={this.onSettingOK}
-                onCancel={this.onSettingCancle}
             >
                 Brightness: <Slider defaultValue={layer.get('brightness')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('brightness',value)}}/>
                 Contrast: <Slider defaultValue={layer.get('contrast')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('contrast',value)}}/>
@@ -30,7 +31,17 @@ class RasterLayerSettingModal extends Component {
                 Astruation: <Slider defaultValue={layer.get('astruation')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('astruation',value)}}/>
                 Opacity: <Slider defaultValue={layer.get('opacity')} min={0} max={1} step={0.1} onChange={(value)=>{this.onSettingChange('opacity',value)}}/>
                 Visible: <Switch defaultChecked={layer.get('visible')} onChange={(checked)=>{this.onSettingChange('visible',checked)}}/>
-            </Modal>
+            </Drawer>
+        );
+    }
+
+    title(name) {
+        return (
+            <span>
+                <span>栅格图层 {name} 属性设置</span>
+                <Button size="small" type="link" onClick={this.onSettingOK}>确定</Button>
+                <Button size="small" type="link" onClick={this.onSettingCancle}>取消</Button>
+            </span>
         );
     }
 
