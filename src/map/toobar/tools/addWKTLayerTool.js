@@ -1,10 +1,10 @@
 /**
  * 添加WKT代码
  * */
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 import {actionCreators} from '../../olmap/store';
-import {Button, Input, Modal} from "antd";
+import {Input, Modal} from "antd";
 import * as OLMAP from '../../olmap/olmapManager'
 
 class AddWKTLayerTool extends Component {
@@ -12,7 +12,7 @@ class AddWKTLayerTool extends Component {
     /**
      * 构造器
      * */
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             layerName: "wktVector",
@@ -52,6 +52,7 @@ class AddWKTLayerTool extends Component {
         let layerName = e.target.value;
         this.setState({layerName});
     }
+
     changeTextArea(e) {
         let inputWKT = e.target.value;
         this.setState({inputWKT});
@@ -66,6 +67,7 @@ class AddWKTLayerTool extends Component {
         this.props.addWKTLayer(this.props.olmap, this.state.layerName, this.state.inputWKT);
         this.props.onOK();
     }
+
     onModalCancel() {
         this.props.onCancel();
     }
@@ -84,4 +86,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddWKTLayerTool);
+export default connect(mapStateToProps, mapDispatchToProps)(AddWKTLayerTool);

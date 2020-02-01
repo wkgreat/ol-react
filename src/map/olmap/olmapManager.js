@@ -1,6 +1,6 @@
 /**
  * @file openlayers 地图接口
-*/
+ */
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
 import {fromLonLat} from 'ol/proj';
@@ -28,7 +28,7 @@ export const layerIDGen = function* layerIdGenerator() {
  * @param olmap 地图对象
  * @param name 要定义的图层名称
  * @returns 唯一的图层名称
-*/
+ */
 export const genLayerName = (olmap, name) => {
     name = name || "layer";
     const layersNames = olmap.getLayers().getArray().map(l => l.get('name'));
@@ -41,7 +41,7 @@ export const genLayerName = (olmap, name) => {
  * @param name 图层名称
  * @param url 瓦片xyz的URL
  * @returns 瓦片图层对象
-*/
+ */
 export const makeXYZLayer = (olmap, name, url) => {
     return new TileLayer({
         name: genLayerName(olmap, name),
@@ -54,21 +54,21 @@ export const makeXYZLayer = (olmap, name, url) => {
 
 /**
  * 获取地图中指定名称的图层对象
-*/
+ */
 export const findLayerByName = (olmap, name) => {
     return olmap.getLayers().getArray().find(layer => layer.get('name') === name);
 };
 
 /**
  * 得到指定名字的图层index，相当于图层在地图中的顺序
-*/
+ */
 export const findLayerIndexByName = (olmap, name) => {
     return olmap.getLayers().getArray().findIndex(layer => layer.get('name') === name);
 };
 
 /**
  * 删除指定名字的图层
-*/
+ */
 export const removeLayerByName = (olmap, name) => {
 
     const layer = findLayerByName(olmap, name);
@@ -80,7 +80,7 @@ export const removeLayerByName = (olmap, name) => {
 
 /**
  * 设置指定名字的图层的属性
-*/
+ */
 export const setLayerProps = (olmap, name, props) => {
     const layer = findLayerByName(olmap, name);
     if (layer) {
@@ -95,8 +95,8 @@ export const setLayerProps = (olmap, name, props) => {
  * @param csv csv数据
  * @param {object} fieldIndex 地理字段信息
  * @example fieldIndex {'lon':1, 'lat':2, 'time':3} key为字段类型，value为第一个字段
- *      
-*/
+ *
+ */
 export const makeCSVLayer = (olmap, name, csv, fieldIndex) => {
 
     const features = csv
@@ -128,11 +128,13 @@ export const makeCSVLayer = (olmap, name, csv, fieldIndex) => {
 export const makeWKTLayer = (olmap, name, wkts) => {
     let wktFormat = new WKT();
     wkts = wkts.trim();
-    if(!wkts) {return null;}
+    if (!wkts) {
+        return null;
+    }
     let features = wkts
         .split("\n")
         .filter(s => s != null && s.length > 0)
-        .map(wkt=>
+        .map(wkt =>
             wktFormat.readFeature(wkt, {
                 dataProjection: 'EPSG:4326',
                 featureProjection: 'EPSG:3857'
@@ -151,7 +153,7 @@ export const makeWKTLayer = (olmap, name, wkts) => {
  * 图层上移一层
  * @param olmap 地图对象
  * @param name 要移动的图层名称
-*/
+ */
 export const layerUp = (olmap, name) => {
     const layerIndex = findLayerIndexByName(olmap, name);
     const layerNums = olmap.getLayers().getLength();
@@ -166,7 +168,7 @@ export const layerUp = (olmap, name) => {
  * 图层下移一层
  * @param olmap 地图对象
  * @param name 要移动的图层名称
-*/
+ */
 export const layerDown = (olmap, name) => {
     const layerIndex = findLayerIndexByName(olmap, name);
     if (layerIndex > 0) {
@@ -180,7 +182,7 @@ export const layerDown = (olmap, name) => {
  * 缩放至某图层
  * @param olmap 地图对象
  * @param name 缩放的目标图层
-*/
+ */
 export const zoomToLayer = (olmap, name) => {
     const layer = findLayerByName(olmap, name);
     if (layer instanceof VectorLayer) {
@@ -192,9 +194,9 @@ export const zoomToLayer = (olmap, name) => {
  * 获取图层类型
  * @param {ol.layer} layer 图层对象
  * @returns {string} 图层类型的字符串表示
-*/
+ */
 export const getLayerType = layer => {
-    if(layer instanceof VectorLayer) {
+    if (layer instanceof VectorLayer) {
         return "VectorLayer";
     } else if (layer instanceof ImageLayer) {
         return "ImageLayer";

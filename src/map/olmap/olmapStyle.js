@@ -10,8 +10,8 @@ import {Circle, Fill, RegularShape, Stroke} from "ol/style";
 export const defaultPointStyle = new Style({
 
     image: new Circle({
-        fill: new Fill({color:'red'}),
-        stroke: new Stroke({color:'blue', width:2}),
+        fill: new Fill({color: 'red'}),
+        stroke: new Stroke({color: 'blue', width: 2}),
         radius: 5
 
     })
@@ -30,7 +30,7 @@ export const getDefaultStyle = () => {
  * get a regular shape point style from props
  * @param {object} props
  * @returns {Style}
-*/
+ */
 export const getPointRegularShapeStyle = (props) => new Style({image: getPointRegularShapeImage(props)});
 export const getPointRegularShapeImage = (props) => {
     const
@@ -38,14 +38,14 @@ export const getPointRegularShapeImage = (props) => {
         radius = props.radius || 10,
         angle = props.angle || 0,
         rotation = props.rotation || 0,
-        fillColor = props.fillColor || [98,230,220,0.5],
+        fillColor = props.fillColor || [98, 230, 220, 0.5],
         strokeColor = props.strokeColor || 'blue',
         strokeWidth = props.strokeWidth || 2;
 
-    if(points<=0) {
+    if (points <= 0) {
         return new Circle({
-            fill: new Fill({color:fillColor}),
-            stroke: new Stroke({color:strokeColor, width:strokeWidth}),
+            fill: new Fill({color: fillColor}),
+            stroke: new Stroke({color: strokeColor, width: strokeWidth}),
             radius
         });
     } else {
@@ -54,7 +54,7 @@ export const getPointRegularShapeImage = (props) => {
             angle,
             rotation,
             fill: new Fill({color: fillColor}),
-            stroke: new Stroke({color:strokeColor, width:strokeWidth}),
+            stroke: new Stroke({color: strokeColor, width: strokeWidth}),
             radius
         });
     }
@@ -63,7 +63,7 @@ export const getPointRegularShapeImage = (props) => {
 /**
  * get a stoke style from props
  * */
-export const getStrokeStyle = (props) => new Style({stroke:getStroke(props)});
+export const getStrokeStyle = (props) => new Style({stroke: getStroke(props)});
 export const getStroke = (props) => {
     const
         color = props.color || 'blue',
@@ -74,12 +74,12 @@ export const getStroke = (props) => {
         lineDashOffset = props.lineDashOffset || 0,
         miterLimit = props.miterLimit || 10;
     return new Stroke({
-        color,width,lineCap,lineJoin,lineDash,lineDashOffset,miterLimit
+        color, width, lineCap, lineJoin, lineDash, lineDashOffset, miterLimit
     });
 };
 
 export const getFill = (props) => {
-    const color = props.color || [98,230,220,0.5];
+    const color = props.color || [98, 230, 220, 0.5];
     return new Fill({
         color
     })
@@ -90,7 +90,7 @@ export const getFill = (props) => {
  * */
 export const rgbArrayToObject = (rgb) => {
     if ((typeof rgb) == 'object') {
-        return {r:rgb[0],g:rgb[1],b:rgb[2],a:rgb[3]};
+        return {r: rgb[0], g: rgb[1], b: rgb[2], a: rgb[3]};
     } else {
         return rgb;
     }

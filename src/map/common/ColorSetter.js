@@ -1,12 +1,12 @@
 import React from "react";
 import {Icon, Popover} from "antd";
-import { SketchPicker } from 'react-color';
+import {SketchPicker} from 'react-color';
 
 const ColorSetter = (props) => {
 
     const content = (
         <SketchPicker
-            color = {props.color}
+            color={props.color}
             onChange={props.onChange}
             onOK={props.onOK}
             visible={true}

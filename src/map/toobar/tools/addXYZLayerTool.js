@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Input, Modal} from 'antd';
+import {Input, Modal} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
 import * as olmapFuncs from "../../olmap/olmapManager";
@@ -26,9 +26,9 @@ class AddXYZLayerTool extends Component {
             <Fragment>
 
                 <Modal
-                    title = '添加XYZ图层'
+                    title='添加XYZ图层'
                     visible={this.props.visible}
-                    onOk={()=>this.onModalOK(olmap,onAddXYZLayer)}
+                    onOk={() => this.onModalOK(olmap, onAddXYZLayer)}
                     onCancel={this.onModalCancle}
                 >
                     请输入图层名称:
@@ -43,20 +43,20 @@ class AddXYZLayerTool extends Component {
 
     onURLInputChange(e) {
         const inputURL = e.target.value;
-        this.setState((preState)=>({
+        this.setState((preState) => ({
             inputURL
         }));
     }
 
     onNameInputChange(e) {
         const inputName = e.target.value;
-        this.setState((preState)=>({
+        this.setState((preState) => ({
             inputName
         }));
     }
 
     onModalOK(olmap, addLayer) {
-        addLayer(olmap,this.state.inputName,this.state.inputURL);
+        addLayer(olmap, this.state.inputName, this.state.inputURL);
         this.props.onOK();
     }
 
@@ -70,12 +70,12 @@ const mapStateToProps = (state) => ({
     olmap: state.olmap.olmap
 });
 
-const mapDispatchToProps = (dispatch)=>({
-    onAddXYZLayer: (olmap,name,url)=> {
-        const layer = olmapFuncs.makeXYZLayer(olmap,name, url);
+const mapDispatchToProps = (dispatch) => ({
+    onAddXYZLayer: (olmap, name, url) => {
+        const layer = olmapFuncs.makeXYZLayer(olmap, name, url);
         const action = actionCreators.addLayerAction(layer);
         dispatch(action);
     }
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddXYZLayerTool);
+export default connect(mapStateToProps, mapDispatchToProps)(AddXYZLayerTool);

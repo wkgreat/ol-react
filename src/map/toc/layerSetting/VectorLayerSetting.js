@@ -24,14 +24,14 @@ class VectorLayerSetting extends Component {
 
         const {layer} = this.props;
 
-        return(
+        return (
             <Drawer
-                title = {this.title(layer.get('name'))}
+                title={this.title(layer.get('name'))}
                 placement='right'
                 width={350}
                 onClose={this.onOK}
                 visible={this.props.visible}
-                bodyStyle={{margin:"0px", padding:"0px"}}
+                bodyStyle={{margin: "0px", padding: "0px"}}
             >
                 <Collapse defaultActiveKey={["1"]}>
                     <Collapse.Panel header="Point Regular Shape" key="1">
@@ -72,9 +72,10 @@ class VectorLayerSetting extends Component {
         let style = this.props.layer.getStyle();
         return (typeof style) == 'function';
     }
+
     getStyle() {
         let style = this.props.layer.getStyle();
-        if((typeof style) == "function") {
+        if ((typeof style) == "function") {
             return getDefaultStyle();
         } else {
             return style;
@@ -84,25 +85,28 @@ class VectorLayerSetting extends Component {
     onOK() {
         this.props.onOK();
     }
+
     onCancel() {
         let layer = this.props.layer;
         layer.setStyle(this.oldStyle);
         this.props.onCancel();
     }
 
-    onImageChange(image){
+    onImageChange(image) {
         let layer = this.props.layer;
         let style = this.getStyle();
         style.setImage(image);
         layer.setStyle(style);
     }
-    onStrokeChange(stroke){
+
+    onStrokeChange(stroke) {
         let layer = this.props.layer;
         let style = this.getStyle();
         style.setStroke(stroke);
         layer.setStyle(style);
     }
-    onFillChange(fill){
+
+    onFillChange(fill) {
         let layer = this.props.layer;
         let style = this.getStyle();
         style.setFill(fill);
@@ -115,4 +119,4 @@ const mapStateToProps = (state) => ({
     olmap: state.olmap.olmap
 });
 
-export default connect(mapStateToProps,null)(VectorLayerSetting);
+export default connect(mapStateToProps, null)(VectorLayerSetting);
