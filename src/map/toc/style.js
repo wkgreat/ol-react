@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 export const TOCWrapper = styled.div`
+
+  position: absolute;
+  float:left;
+  top: 48px;
+  left: 0px;
+  z-index: 9;
   width: 200px;
-  height: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.8);
   box-sizing: border-box;

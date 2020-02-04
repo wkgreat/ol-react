@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {LayerItemWrapper, LayerToolDiv} from './style';
 import {connect} from 'react-redux';
 import * as olmapActions from '../olmap/store/actionCreator';
-import * as OLMAP from "../olmap/olmapManager";
+import * as OLMAP from "../common/map/olmapLayer";
 import LayerSetting from "./layerSetting";
 
 

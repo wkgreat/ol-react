@@ -5,6 +5,10 @@ import * as tools from './tools';
 import {Col, Icon, Menu, Row} from "antd";
 import {TitleDiv} from "../style";
 import logo from "../static/logo.gif";
+import ReactDOM from "react-dom";
+import {DarwerSetter} from "../common/components/DarwerSetter";
+import ScalaBarSetting from "../common/components/scalebar/scalabarSetting";
+import IconFont from "../common/components/IconFont";
 
 class MapToobar extends Component {
 
@@ -13,7 +17,8 @@ class MapToobar extends Component {
         this.state = {
             addCSVLayerToolVisible: false,
             addWKTLayerToolVisible: false,
-            addXYZLayerToolVisible: false
+            addXYZLayerToolVisible: false,
+            scalaBarToolVisible: false
         };
     }
 
@@ -23,16 +28,29 @@ class MapToobar extends Component {
             <Fragment>
                 <Row>
                     <Col span={4}>
-                        <TitleDiv><img src={logo} height={42} alt='logo'/></TitleDiv>
+                        <TitleDiv><img src={logo} height={40} alt='logo'/></TitleDiv>
                     </Col>
                     <Col span={20}>
                         <Menu mode="horizontal">
+                            <Menu.SubMenu title={
+                                <span className="submenu-title-wrapper">
+                                        <Icon type="desktop"/>
+                                        地图显示
+                                    </span>
+                            }>
+                                <Menu.Item key="display:scalabar"
+                                           onClick={this.setVisible("scalaBarToolVisible")}>
+                                    <IconFont type="icon-Ruler" />
+                                    显示比例尺
+                                </Menu.Item>
+                            </Menu.SubMenu>
+
                             <Menu.SubMenu
                                 title={
                                     <span className="submenu-title-wrapper">
-                                <Icon type="appstore"/>
-                                图层添加
-                            </span>
+                                        <Icon type="appstore"/>
+                                        图层添加
+                                    </span>
                                 }
                             >
                                 <Menu.ItemGroup title="栅格图层">
@@ -40,19 +58,50 @@ class MapToobar extends Component {
                                     <Menu.Item key="setting:addXYZLayer"
                                                onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
                                     </Menu.Item>
+
                                 </Menu.ItemGroup>
+
                                 <Menu.ItemGroup title="矢量图层">
+
                                     <Menu.Item key="setting:addCSVLayer"
                                                onClick={this.setVisible("addCSVLayerToolVisible")}>添加CSV矢量图层
                                     </Menu.Item>
+
                                     <Menu.Item key="setting:addWKTLayer"
                                                onClick={this.setVisible("addWKTLayerToolVisible")}>添加WKT矢量图层
                                     </Menu.Item>
+
                                 </Menu.ItemGroup>
+                            </Menu.SubMenu>
+
+                            <Menu.SubMenu title={
+                                <span className="submenu-title-wrapper">
+                                        <Icon type="experiment"/>
+                                        空间分析
+                                    </span>
+                            }>
+                                <Menu.Item key="display:scalabar"
+                                           disabled={true}
+                                           onClick={this.setVisible("scalaBarToolVisible")}>
+                                    <IconFont type="iconruler-alt-"/>
+                                    测距
+                                </Menu.Item>
                             </Menu.SubMenu>
                         </Menu>
                     </Col>
                 </Row>
+
+                <DarwerSetter
+                    visible={this.state.scalaBarToolVisible}
+                    onOK={this.setInvisible("scalaBarToolVisible")}
+                    onCancel={this.setInvisible("scalaBarToolVisible")}
+                    name = "比例尺设置"
+                    olmap={this.props.olmap}
+                    components = {{
+                        ScalaBarSetting: ScalaBarSetting
+                    }}
+                />
+
                 <tools.AddXYZLayerTool
                     visible={this.state.addXYZLayerToolVisible}
                     onOK={this.setInvisible("addXYZLayerToolVisible")}
@@ -68,6 +117,7 @@ class MapToobar extends Component {
                     onOK={this.setInvisible("addWKTLayerToolVisible")}
                     onCancel={this.setInvisible("addWKTLayerToolVisible")}
                 />
+
             </Fragment>
         );
     }
@@ -87,7 +137,6 @@ class MapToobar extends Component {
             this.setState(p);
         }
     }
-
 }
 
 

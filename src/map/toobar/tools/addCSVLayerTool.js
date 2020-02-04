@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Divider, Icon, Input, Modal, Radio, Select, Upload} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
-import * as OLMAP from "../../olmap/olmapManager";
+import * as OLMAP from "../../common/map/olmapLayer";
 import axios from 'axios';
 
 class AddCSVLayerTool extends Component {

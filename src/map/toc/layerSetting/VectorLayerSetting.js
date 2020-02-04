@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Button, Collapse, Drawer} from 'antd';
 import RegularShapePointStyleGenerator from './vectorLayer/RegularShapePointStyleGenerator';
 import StrokeStyleGenerator from "./vectorLayer/StrokeStyleGenerator";
-import {getDefaultStyle} from "../../olmap/olmapStyle";
+import {getDefaultStyle} from "../../common/map/olmapStyle";
 import FillStyleGenerator from "./vectorLayer/FillStyleGenerator";
 
 class VectorLayerSetting extends Component {
@@ -31,6 +31,7 @@ class VectorLayerSetting extends Component {
                 width={350}
                 onClose={this.onOK}
                 visible={this.props.visible}
+                className="drawer-setter"
                 bodyStyle={{margin: "0px", padding: "0px"}}
             >
                 <Collapse defaultActiveKey={["1"]}>
@@ -60,7 +61,7 @@ class VectorLayerSetting extends Component {
     title(layerName) {
         return (
             <span>
-                <span>图层设置:</span>
+                <span>图层设置: </span>
                 <span>{layerName}</span><br/>
                 <Button size="small" type="link" onClick={this.onOK}>确定</Button>
                 <Button size="small" type="link" onClick={this.onCancel}>取消</Button>

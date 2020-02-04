@@ -36,9 +36,4 @@ export const TitleDiv = styled.div`
 `;
 
 export const TOCWrapper = styled.div`
-  position: absolute;
-  float:left;
-  top: 42px;
-  right: 0px;
-  z-index: 9;
 `;

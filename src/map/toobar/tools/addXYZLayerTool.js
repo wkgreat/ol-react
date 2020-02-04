@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Input, Modal} from 'antd';
 import {connect} from 'react-redux';
 import {actionCreators} from '../../olmap/store';
-import * as olmapFuncs from "../../olmap/olmapManager";
+import * as olmapFuncs from "../../common/map/olmapLayer";
 
 class AddXYZLayerTool extends Component {
 
