@@ -1,29 +1,13 @@
 import * as constants from './actionTypes';
-import {Map, View} from "ol";
-import TileLayer from "ol/layer/Tile";
-import OSM from "ol/source/OSM";
-import {fromLonLat} from 'ol/proj';
-import * as OLMAP from '../olmapManager';
+import * as OLMAP from '../../common/map/olmapLayer';
+import OLMap from "../../common/map/olmap";
 
-const osmLayer = new TileLayer({
-    name: 'osm',
-    source: new OSM()
-});
-
-const olmap = new Map({
-    view: new View({
-        center: fromLonLat([118.794315, 32.050167]),
-        zoom: 10
-    }),
-    controls: [],
-    layers: [osmLayer]
-});
-
+const olmap = new OLMap();
 
 const defaultState = {
     version: 0,
     layerVersion: 0,
-    olmap: olmap,
+    olmap,
     layerNums: 1
 };
 

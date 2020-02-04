@@ -1,8 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import styled from "styled-components";
+import {ScaleLine} from "ol/control";
 
-const id = "Olmap-div";
+const id = "map-div";
 
 const MapDiv = styled.div`
     height: 100%;
@@ -13,9 +14,7 @@ class Olmap extends Component {
 
     render() {
         return (
-            <Fragment>
-                <MapDiv id={id}/>
-            </Fragment>
+            <div id={id}/>
         );
     }
 

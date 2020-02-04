@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, Input, Row} from "antd";
-import * as STYLE from "../../../olmap/olmapStyle";
-import ColorSetter from "../../../common/ColorSetter";
+import * as STYLE from "../../../common/map/olmapStyle";
+import ColorSetter from "../../../common/components/color/ColorSetter";
 
 /**
  *
