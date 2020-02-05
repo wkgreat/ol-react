@@ -61,6 +61,6 @@ class FillStyleGenerator extends Component {
             this.props.onChange(fill);
         }
     }
-};
+}
 
 export default FillStyleGenerator;

@@ -25,7 +25,7 @@ export const removeLayerByNameAction = (name) => ({
 
 });
 
-export const renameLayer = (name1,name2) => ({
+export const renameLayer = (name1, name2) => ({
     type: constants.RENAME_LAYER,
     name1,
     name2

@@ -5,7 +5,6 @@ import * as tools from './tools';
 import {Col, Icon, Menu, Row} from "antd";
 import {TitleDiv} from "../../../style";
 import logo from "../../../static/logo.gif";
-import ReactDOM from "react-dom";
 import {DarwerSetter} from "../DarwerSetter";
 import IconFont from "../IconFont";
 import AddDrawLayer from "../draw/addDrawLayer";
@@ -19,14 +18,14 @@ class MapToobar extends Component {
             addCSVLayerToolVisible: false,
             addWKTLayerToolVisible: false,
             addXYZLayerToolVisible: false,
-            addDrawLayerVisible:false,
+            addDrawLayerVisible: false,
             scalaBarToolVisible: false
         };
     }
 
     render() {
 
-        const {SubMenu,ItemGroup,Item} = Menu;
+        const {SubMenu, ItemGroup, Item} = Menu;
 
         return (
             <Fragment>
@@ -43,8 +42,8 @@ class MapToobar extends Component {
                                     </span>
                             }>
                                 <Item key="display:scalabar"
-                                           onClick={this.setVisible("scalaBarToolVisible")}>
-                                    <IconFont type="icon-Ruler" />
+                                      onClick={this.setVisible("scalaBarToolVisible")}>
+                                    <IconFont type="icon-Ruler"/>
                                     显示比例尺
                                 </Item>
                             </SubMenu>
@@ -60,7 +59,7 @@ class MapToobar extends Component {
                                 <ItemGroup title="栅格图层">
 
                                     <Item key="setting:addXYZLayer"
-                                               onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
+                                          onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
                                     </Item>
 
                                 </ItemGroup>
@@ -68,11 +67,11 @@ class MapToobar extends Component {
                                 <ItemGroup title="矢量图层">
 
                                     <Item key="setting:addCSVLayer"
-                                               onClick={this.setVisible("addCSVLayerToolVisible")}>添加CSV矢量图层
+                                          onClick={this.setVisible("addCSVLayerToolVisible")}>添加CSV矢量图层
                                     </Item>
 
                                     <Item key="setting:addWKTLayer"
-                                               onClick={this.setVisible("addWKTLayerToolVisible")}>添加WKT矢量图层
+                                          onClick={this.setVisible("addWKTLayerToolVisible")}>添加WKT矢量图层
                                     </Item>
 
                                 </ItemGroup>
@@ -105,9 +104,9 @@ class MapToobar extends Component {
                     visible={this.state.scalaBarToolVisible}
                     onOK={this.setInvisible("scalaBarToolVisible")}
                     onCancel={this.setInvisible("scalaBarToolVisible")}
-                    name = "比例尺设置"
+                    name="比例尺设置"
                     olmap={this.props.olmap}
-                    components = {{
+                    components={{
                         ScalaBarSetting: ScalebarSetting
                     }}
                 />

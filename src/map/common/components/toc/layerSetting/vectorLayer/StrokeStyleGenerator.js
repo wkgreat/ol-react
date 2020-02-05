@@ -146,6 +146,6 @@ class StrokeStyleGenerator extends Component {
             this.props.onChange(stroke);
         }
     }
-};
+}
 
 export default StrokeStyleGenerator;

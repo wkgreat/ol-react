@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Collapse, Drawer} from 'antd';
+import {Collapse, Drawer} from 'antd';
 import './DrawSetter.css'
 
 /**
@@ -33,7 +33,7 @@ export const DarwerSetter = (props) => {
             }}>
             <Collapse>
                 {
-                    Object.keys(props.components).map((k)=>{
+                    Object.keys(props.components).map((k) => {
                         const Com = props.components[k];
                         return (
                             <Collapse.Panel key={k} header={k}>

@@ -1,7 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from "styled-components";
-import {ScaleLine} from "ol/control";
 
 const id = "map-div";
 

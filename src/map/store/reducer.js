@@ -7,7 +7,7 @@ const defaultState = {
     headerHeight: "48px"
 };
 
-const mapapp = (state=defaultState, action) => {
+const mapapp = (state = defaultState, action) => {
     return state;
 };
 

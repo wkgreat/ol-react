@@ -85,8 +85,8 @@ export const renameLayer = (olmap, name1, name2) => {
 
     const layer = findLayerByName(olmap, name1);
     if (layer && name2) {
-        const newName = genLayerName(olmap,name2);
-        layer.set("name",newName);
+        const newName = genLayerName(olmap, name2);
+        layer.set("name", newName);
     }
 
 };
@@ -208,8 +208,8 @@ export const layerDown = (olmap, name) => {
 export const zoomToLayer = (olmap, name) => {
     const layer = findLayerByName(olmap, name);
     if (layer instanceof VectorLayer) {
-        if(layer && layer.getSource()) {
-            if(layer.getSource().getFeatures().length>0) {
+        if (layer && layer.getSource()) {
+            if (layer.getSource().getFeatures().length > 0) {
                 olmap.getView().fit(layer.getSource().getExtent());
 
             }

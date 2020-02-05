@@ -1,9 +1,6 @@
 import * as constants from './actionTypes';
 import * as OLMAP from '../map/olmapLayer';
 import OLMap from "../map/olmap";
-import VectorSource from "ol/source/Vector";
-import VectorLayer from "ol/layer/Vector";
-import {genLayerName} from "../map/olmapLayer";
 
 const olmap = new OLMap();
 
@@ -35,7 +32,7 @@ export default ((state = defaultState, action) => {
             newState.layerVersion = newState.layerVersion + 1;
             return newState;
         case constants.ADD_EMPTY_VECTOR_LAYER:
-            let layer = OLMAP.makeVectorLayer(state.olmap,action.layerName);
+            let layer = OLMAP.makeVectorLayer(state.olmap, action.layerName);
             state.olmap.addLayer(layer);
             //OLMAP.zoomToLayer(state.olmap, layer.get('name'));
             newState = copyState(state);

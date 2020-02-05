@@ -6,8 +6,8 @@ import * as ACTION from '../store/actionCreator'
 import VAddDrawLayer from "./vAddDrawLayer";
 import Draw from "ol/interaction/Draw";
 import * as LAYER from '../map/olmapLayer';
+import {genLayerName} from '../map/olmapLayer';
 import * as STYLE from "../map/olmapStyle";
-import {genLayerName} from "../map/olmapLayer";
 
 
 /**
@@ -15,16 +15,16 @@ import {genLayerName} from "../map/olmapLayer";
  * onCancel
  *
  * */
-class AddDrawLayer extends Component{
+class AddDrawLayer extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             visible: false,
             layerType: "Point",
             layerName: "draw_layer"
         };
-        if(this.state.visible) {
+        if (this.state.visible) {
             this.start();
         }
 
@@ -52,11 +52,13 @@ class AddDrawLayer extends Component{
         });
         this.props.olmap.addInteraction(this.drawInteraction);
     }
+
     onOK() {
         this.props.onOK();
         this.props.olmap.removeInteraction(this.drawInteraction);
         this.setVisible(false);
     }
+
     onCancel() {
         this.props.onCancel();
         this.props.removeLayer(this.layer.get("name"));
@@ -65,8 +67,8 @@ class AddDrawLayer extends Component{
     }
 
     setVisible(visible) {
-        this.setState((preState)=>{
-            if(visible && !preState.visible) {
+        this.setState((preState) => {
+            if (visible && !preState.visible) {
                 this.start();
             }
             return {visible};
@@ -75,9 +77,10 @@ class AddDrawLayer extends Component{
 
     onLayerNameChange(e) {
         let layerName = e.target.value;
-        this.props.renameLayer(this.props.olmap,this.layer.get("name"),layerName);
+        this.props.renameLayer(this.props.olmap, this.layer.get("name"), layerName);
         this.setState({layerName});
     }
+
     onLayerTypeChange(e) {
         let layerType = e.target.value;
         this.props.olmap.removeInteraction(this.drawInteraction);
@@ -90,16 +93,16 @@ class AddDrawLayer extends Component{
     }
 
     render() {
-        if(this.state.visible) {
+        if (this.state.visible) {
             return (
                 <VAddDrawLayer
                     visible={this.state.visible}
                     layerType={this.state.layerType}
                     layerName={this.state.layerName}
-                    onLayerTypeChange = {this.onLayerTypeChange}
-                    onLayerNameChange = {this.onLayerNameChange}
-                    onOK = {this.onOK}
-                    onCancel = {this.onCancel}
+                    onLayerTypeChange={this.onLayerTypeChange}
+                    onLayerNameChange={this.onLayerNameChange}
+                    onOK={this.onOK}
+                    onCancel={this.onCancel}
                 />
             )
         } else {
@@ -123,8 +126,8 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(action);
     },
     renameLayer: (olmap, name1, name2) => {
-        let newName = LAYER.genLayerName(olmap,name2);
-        let action = ACTION.renameLayer(name1,newName);
+        let newName = LAYER.genLayerName(olmap, name2);
+        let action = ACTION.renameLayer(name1, newName);
         dispatch(action);
     }
 });

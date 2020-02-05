@@ -1,6 +1,5 @@
-import React, {Component} from "react";
-import {Col, Divider, Drawer, Input, Modal, Row} from "antd";
-import { Button, Radio, Icon} from 'antd';
+import React from "react";
+import {Button, Col, Drawer, Input, Radio, Row} from "antd";
 import IconFont from "../IconFont";
 
 /**
@@ -45,7 +44,7 @@ const VAddDrawLayer = (props) => {
                 <Col>
                     <Radio.Group size="small" defaultValue={props.layerType} value={props.layerType}
                                  onChange={props.onLayerTypeChange}>
-                        <Radio.Button size="small" value="Point" >
+                        <Radio.Button size="small" value="Point">
                             <IconFont type="iconsandiantu"/>Point</Radio.Button>
                         <Radio.Button size="small" value="LineString">
                             <IconFont type="iconvector-polyline"/>LineString</Radio.Button>
