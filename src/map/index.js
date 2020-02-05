@@ -1,15 +1,15 @@
-import React, {Component, Fragment} from 'react';
-import Olmap from "./olmap";
-import {connect, Provider} from 'react-redux';
-import store from './store';
+import React, {Fragment} from 'react';
+import Olmap from "./common/components";
+import {connect} from 'react-redux';
 import {GlobalStyle} from '../style';
 import 'antd/dist/antd.css';
 import './static/iconfont/iconfont.css';
-import {TOCWrapper} from "./style";
-import MapToolbar from "./toobar";
-import TOC from "./toc";
+import MapToolbar from "./common/components/toobar";
+import TOC from "./common/components/toc";
 import {Layout} from "antd";
-const {Header,Content} = Layout;
+import AddDrawLayer from "./common/components/draw/addDrawLayer.js";
+
+const {Header} = Layout;
 
 const MapAPP = (props) => (
     <Fragment>
@@ -21,6 +21,7 @@ const MapAPP = (props) => (
         </Layout>
         <Olmap/>
         <TOC/>
+        <AddDrawLayer/>
     </Fragment>
 );
 
@@ -33,4 +34,4 @@ const state2props = (state) => ({
     }
 });
 
-export default connect(state2props,null)(MapAPP);
+export default connect(state2props, null)(MapAPP);

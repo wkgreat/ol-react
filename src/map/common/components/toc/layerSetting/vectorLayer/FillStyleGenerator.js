@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, Input, Row} from "antd";
-import * as STYLE from "../../../common/map/olmapStyle";
-import ColorSetter from "../../../common/components/color/ColorSetter";
+import * as STYLE from "../../../map/olmapStyle";
+import ColorSetter from "../../../color/ColorSetter";
 
 /**
  *
@@ -61,6 +61,6 @@ class FillStyleGenerator extends Component {
             this.props.onChange(fill);
         }
     }
-};
+}
 
 export default FillStyleGenerator;

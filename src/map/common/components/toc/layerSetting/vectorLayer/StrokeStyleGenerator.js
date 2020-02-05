@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, Input, InputNumber, Row, Select, Slider, Switch} from "antd";
-import * as STYLE from "../../../common/map/olmapStyle";
-import ColorSetter from "../../../common/components/color/ColorSetter";
+import * as STYLE from "../../../map/olmapStyle";
+import ColorSetter from "../../../color/ColorSetter";
 
 /**
  *
@@ -146,6 +146,6 @@ class StrokeStyleGenerator extends Component {
             this.props.onChange(stroke);
         }
     }
-};
+}
 
 export default StrokeStyleGenerator;

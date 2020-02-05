@@ -40,15 +40,15 @@ class _OLMap extends Map {
             this.removeControl(this.scaleLine);
         }
     }
+
     setScaleBar(visible, props) {
-        if(visible) {
+        if (visible) {
             this.removeControl(this.scaleLine);
             console.log(props);
             this.scaleLine = new ScaleLine(props);
             this.addControl(this.scaleLine);
         }
     }
-
 }
 
 export default OLMap;

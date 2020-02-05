@@ -3,12 +3,12 @@ import 'antd/dist/antd.css';
 import {connect} from 'react-redux';
 import * as tools from './tools';
 import {Col, Icon, Menu, Row} from "antd";
-import {TitleDiv} from "../style";
-import logo from "../static/logo.gif";
-import ReactDOM from "react-dom";
-import {DarwerSetter} from "../common/components/DarwerSetter";
-import ScalaBarSetting from "../common/components/scalebar/scalabarSetting";
-import IconFont from "../common/components/IconFont";
+import {TitleDiv} from "../../../style";
+import logo from "../../../static/logo.gif";
+import {DarwerSetter} from "../DarwerSetter";
+import IconFont from "../IconFont";
+import AddDrawLayer from "../draw/addDrawLayer";
+import ScalebarSetting from "../scalebar/scalebarSetting";
 
 class MapToobar extends Component {
 
@@ -18,11 +18,14 @@ class MapToobar extends Component {
             addCSVLayerToolVisible: false,
             addWKTLayerToolVisible: false,
             addXYZLayerToolVisible: false,
+            addDrawLayerVisible: false,
             scalaBarToolVisible: false
         };
     }
 
     render() {
+
+        const {SubMenu, ItemGroup, Item} = Menu;
 
         return (
             <Fragment>
@@ -32,20 +35,20 @@ class MapToobar extends Component {
                     </Col>
                     <Col span={20}>
                         <Menu mode="horizontal">
-                            <Menu.SubMenu title={
+                            <SubMenu title={
                                 <span className="submenu-title-wrapper">
                                         <Icon type="desktop"/>
                                         地图显示
                                     </span>
                             }>
-                                <Menu.Item key="display:scalabar"
-                                           onClick={this.setVisible("scalaBarToolVisible")}>
-                                    <IconFont type="icon-Ruler" />
+                                <Item key="display:scalabar"
+                                      onClick={this.setVisible("scalaBarToolVisible")}>
+                                    <IconFont type="icon-Ruler"/>
                                     显示比例尺
-                                </Menu.Item>
-                            </Menu.SubMenu>
+                                </Item>
+                            </SubMenu>
 
-                            <Menu.SubMenu
+                            <SubMenu
                                 title={
                                     <span className="submenu-title-wrapper">
                                         <Icon type="appstore"/>
@@ -53,26 +56,32 @@ class MapToobar extends Component {
                                     </span>
                                 }
                             >
-                                <Menu.ItemGroup title="栅格图层">
+                                <ItemGroup title="栅格图层">
 
-                                    <Menu.Item key="setting:addXYZLayer"
-                                               onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
-                                    </Menu.Item>
+                                    <Item key="setting:addXYZLayer"
+                                          onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
+                                    </Item>
 
-                                </Menu.ItemGroup>
+                                </ItemGroup>
 
-                                <Menu.ItemGroup title="矢量图层">
+                                <ItemGroup title="矢量图层">
 
-                                    <Menu.Item key="setting:addCSVLayer"
-                                               onClick={this.setVisible("addCSVLayerToolVisible")}>添加CSV矢量图层
-                                    </Menu.Item>
+                                    <Item key="setting:addCSVLayer"
+                                          onClick={this.setVisible("addCSVLayerToolVisible")}>添加CSV矢量图层
+                                    </Item>
 
-                                    <Menu.Item key="setting:addWKTLayer"
-                                               onClick={this.setVisible("addWKTLayerToolVisible")}>添加WKT矢量图层
-                                    </Menu.Item>
+                                    <Item key="setting:addWKTLayer"
+                                          onClick={this.setVisible("addWKTLayerToolVisible")}>添加WKT矢量图层
+                                    </Item>
 
-                                </Menu.ItemGroup>
-                            </Menu.SubMenu>
+                                </ItemGroup>
+
+                                <ItemGroup title="手绘图层">
+                                    <Item key="setting:drawLayer" onClick={this.setVisible("addDrawLayerVisible")}>
+                                        添加手绘图层
+                                    </Item>
+                                </ItemGroup>
+                            </SubMenu>
 
                             <Menu.SubMenu title={
                                 <span className="submenu-title-wrapper">
@@ -95,11 +104,17 @@ class MapToobar extends Component {
                     visible={this.state.scalaBarToolVisible}
                     onOK={this.setInvisible("scalaBarToolVisible")}
                     onCancel={this.setInvisible("scalaBarToolVisible")}
-                    name = "比例尺设置"
+                    name="比例尺设置"
                     olmap={this.props.olmap}
-                    components = {{
-                        ScalaBarSetting: ScalaBarSetting
+                    components={{
+                        ScalaBarSetting: ScalebarSetting
                     }}
+                />
+
+                <AddDrawLayer
+                    visible={this.state.addDrawLayerVisible}
+                    onOK={this.setInvisible("addDrawLayerVisible")}
+                    onCancel={this.setInvisible("addDrawLayerVisible")}
                 />
 
                 <tools.AddXYZLayerTool

@@ -79,6 +79,19 @@ export const removeLayerByName = (olmap, name) => {
 };
 
 /**
+ * 重命名图层
+ */
+export const renameLayer = (olmap, name1, name2) => {
+
+    const layer = findLayerByName(olmap, name1);
+    if (layer && name2) {
+        const newName = genLayerName(olmap, name2);
+        layer.set("name", newName);
+    }
+
+};
+
+/**
  * 设置指定名字的图层的属性
  */
 export const setLayerProps = (olmap, name, props) => {
@@ -86,6 +99,15 @@ export const setLayerProps = (olmap, name, props) => {
     if (layer) {
         layer.setProperties(props);
     }
+};
+
+export const makeVectorLayer = (olmap, name) => {
+    let source = new VectorSource();
+    return new VectorLayer({
+        source: source,
+        name: genLayerName(olmap, name),
+        style: STYLE.getDefaultStyle()
+    });
 };
 
 /**
@@ -186,7 +208,13 @@ export const layerDown = (olmap, name) => {
 export const zoomToLayer = (olmap, name) => {
     const layer = findLayerByName(olmap, name);
     if (layer instanceof VectorLayer) {
-        olmap.getView().fit(layer.getSource().getExtent());
+        if (layer && layer.getSource()) {
+            if (layer.getSource().getFeatures().length > 0) {
+                olmap.getView().fit(layer.getSource().getExtent());
+
+            }
+        }
+
     }
 };
 

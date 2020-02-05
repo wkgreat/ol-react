@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import * as OLMAP from '../../common/map/olmapLayer';
+import * as OLMAP from '../../map/olmapLayer';
 import VectorLayerSetting from "./VectorLayerSetting";
 import RasterLayerSettingModal from "./RasterLayerSettingModal";
 
