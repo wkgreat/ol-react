@@ -1,6 +1,6 @@
 ## A GIS Implement by OpenLayers and React
 
-![Node CI](https://github.com/wkgreat/ol-react/workflows/Node%20CI/badge.svg?branch=master)
+![Node CI](https://github.com/wkgreat/ol-react/workflows/Node%20CI/badge.svg?branch=master&event=push)
 
 ## Components:
 
