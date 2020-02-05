@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import styled from "styled-components";
 
 const id = "map-div";
 
-const MapDiv = styled.div`
-    height: 100%;
-    background-color: #040508;
-`;
+// const MapDiv = styled.div`
+//     height: 100%;
+//     background-color: #040508;
+// `;
 
 class Olmap extends Component {
 
