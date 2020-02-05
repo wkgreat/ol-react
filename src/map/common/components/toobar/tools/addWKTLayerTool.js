@@ -3,9 +3,9 @@
  * */
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {actionCreators} from '../../olmap/store';
+import {actionCreators} from '../../store';
 import {Input, Modal} from "antd";
-import * as OLMAP from '../../common/map/olmapLayer'
+import * as OLMAP from '../../map/olmapLayer'
 
 class AddWKTLayerTool extends Component {
 

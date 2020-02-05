@@ -48,7 +48,6 @@ class _OLMap extends Map {
             this.addControl(this.scaleLine);
         }
     }
-
 }
 
 export default OLMap;

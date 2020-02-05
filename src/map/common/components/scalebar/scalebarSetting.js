@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import VScalaBarSetting from "./scalebarSetting";
+import VScalaBarSetting from "./vScalebarSetting";
 /**
  * className	string (defaults to 'ol-scale-line')
  CSS Class name.
@@ -26,7 +26,7 @@ import VScalaBarSetting from "./scalebarSetting";
  Render the text scale above of the scalebar. Only applies when bar is true.
  *
  * */
-class ScalaBarSetting extends Component {
+class ScalebarSetting extends Component {
 
     constructor(props) {
         super(props);
@@ -90,4 +90,4 @@ class ScalaBarSetting extends Component {
     }
 }
 
-export default ScalaBarSetting;
+export default ScalebarSetting;

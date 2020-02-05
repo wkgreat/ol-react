@@ -10,6 +10,11 @@ export const addLayerAction = (layer) => ({
 
 });
 
+export const addEmptyVectorLayerAction = (layerName) => ({
+    type: constants.ADD_EMPTY_VECTOR_LAYER,
+    layerName
+});
+
 /**
  * 删除指定名称的图层
  * */
@@ -18,6 +23,12 @@ export const removeLayerByNameAction = (name) => ({
     type: constants.REMOVE_LAYER_BY_NAME,
     name
 
+});
+
+export const renameLayer = (name1,name2) => ({
+    type: constants.RENAME_LAYER,
+    name1,
+    name2
 });
 
 /**

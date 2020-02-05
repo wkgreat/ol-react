@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Button, Collapse, Drawer} from 'antd';
 import RegularShapePointStyleGenerator from './vectorLayer/RegularShapePointStyleGenerator';
 import StrokeStyleGenerator from "./vectorLayer/StrokeStyleGenerator";
-import {getDefaultStyle} from "../../common/map/olmapStyle";
+import {getDefaultStyle} from "../../map/olmapStyle";
 import FillStyleGenerator from "./vectorLayer/FillStyleGenerator";
 
 class VectorLayerSetting extends Component {
