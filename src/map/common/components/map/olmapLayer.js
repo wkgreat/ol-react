@@ -12,6 +12,12 @@ import ImageLayer from "ol/layer/Image";
 import {Group} from "ol/layer";
 import * as STYLE from './olmapStyle';
 import WKT from "ol/format/WKT";
+import VectorTileLayer from "ol/layer/VectorTile";
+import VectorTile from "ol/source/VectorTile";
+import MVT from "ol/format/MVT";
+import {createXYZ} from 'ol/tilegrid';
+
+import mbStyle from '../../../static/style';
 
 
 //layer编号生成器
@@ -49,7 +55,25 @@ export const makeXYZLayer = (olmap, name, url) => {
             url
         })
     });
-
+};
+/**
+ *
+ * 使用pbf的VectorTile瓦片 (MVT)
+ * */
+export const makeXYZVectorLayer = (olmap, name, url) => {
+    let theLayer = new VectorTileLayer({
+        name: genLayerName(olmap, name),
+        declutter: true,
+        source: new VectorTile({
+            format: new MVT(),
+            tileGrid: createXYZ({maxZoom:17}),
+            tilePixelRatio: 1,
+            url
+        })
+    });
+    debugger;
+    STYLE.applyMapboxStyleJson(theLayer,mbStyle,"composite");
+    return theLayer;
 };
 
 /**
@@ -206,16 +230,16 @@ export const layerDown = (olmap, name) => {
  * @param name 缩放的目标图层
  */
 export const zoomToLayer = (olmap, name) => {
-    const layer = findLayerByName(olmap, name);
-    if (layer instanceof VectorLayer) {
-        if (layer && layer.getSource()) {
-            if (layer.getSource().getFeatures().length > 0) {
-                olmap.getView().fit(layer.getSource().getExtent());
-
-            }
-        }
-
-    }
+    // const layer = findLayerByName(olmap, name);
+    // if (layer instanceof VectorLayer) {
+    //     if (layer && layer.getSource()) {
+    //         if (layer.getSource().getFeatures().length > 0) {
+    //             olmap.getView().fit(layer.getSource().getExtent());
+    //
+    //         }
+    //     }
+    //
+    // }
 };
 
 /**

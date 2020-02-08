@@ -18,6 +18,7 @@ class MapToobar extends Component {
             addCSVLayerToolVisible: false,
             addWKTLayerToolVisible: false,
             addXYZLayerToolVisible: false,
+            addXYZVectorLayerToolVisible: false,
             addDrawLayerVisible: false,
             scalaBarToolVisible: false
         };
@@ -56,10 +57,13 @@ class MapToobar extends Component {
                                     </span>
                                 }
                             >
-                                <ItemGroup title="栅格图层">
+                                <ItemGroup title="瓦片图层">
 
-                                    <Item key="setting:addXYZLayer"
-                                          onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ矢量图层
+                                    <Item key="setting:addXYZRasterLayer"
+                                          onClick={this.setVisible("addXYZLayerToolVisible")}>添加XYZ栅格瓦片图层
+                                    </Item>
+                                    <Item key="setting:addXYZVectorLayer"
+                                          onClick={this.setVisible("addXYZVectorLayerToolVisible")}>Mapbox矢量瓦片图层
                                     </Item>
 
                                 </ItemGroup>
@@ -121,6 +125,11 @@ class MapToobar extends Component {
                     visible={this.state.addXYZLayerToolVisible}
                     onOK={this.setInvisible("addXYZLayerToolVisible")}
                     onCancel={this.setInvisible("addXYZLayerToolVisible")}
+                />
+                <tools.AddXYZVectorLayerTool
+                    visible={this.state.addXYZVectorLayerToolVisible}
+                    onOK={this.setInvisible("addXYZVectorLayerToolVisible")}
+                    onCancel={this.setInvisible("addXYZVectorLayerToolVisible")}
                 />
                 <tools.AddCSVLayerTool
                     visible={this.state.addCSVLayerToolVisible}
