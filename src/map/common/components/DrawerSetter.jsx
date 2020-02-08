@@ -1,6 +1,6 @@
 import React from "react";
 import {Collapse, Drawer} from 'antd';
-import './DrawSetter.css'
+import './DrawerSetter.css'
 
 /**
  * {
@@ -16,7 +16,7 @@ import './DrawSetter.css'
  *     }
  * }
  * */
-export const DarwerSetter = (props) => {
+export const DrawerSetter = (props) => {
 
     return (
         <Drawer

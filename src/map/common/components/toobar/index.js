@@ -5,7 +5,7 @@ import * as tools from './tools';
 import {Col, Icon, Menu, Row} from "antd";
 import {TitleDiv} from "../../../style";
 import logo from "../../../static/logo.gif";
-import {DarwerSetter} from "../DarwerSetter";
+import {DrawerSetter} from "../DrawerSetter";
 import IconFont from "../IconFont";
 import AddDrawLayer from "../draw/addDrawLayer";
 import ScalebarSetting from "../scalebar/scalebarSetting";
@@ -104,7 +104,7 @@ class MapToobar extends Component {
                     </Col>
                 </Row>
 
-                <DarwerSetter
+                <DrawerSetter
                     visible={this.state.scalaBarToolVisible}
                     onOK={this.setInvisible("scalaBarToolVisible")}
                     onCancel={this.setInvisible("scalaBarToolVisible")}
@@ -168,6 +168,4 @@ const mapStateToProps = (state) => ({
     olmap: state.olmap.olmap
 });
 
-const mapDispatchToProps = (dispatch) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MapToobar);
+export default connect(mapStateToProps, null)(MapToobar);
