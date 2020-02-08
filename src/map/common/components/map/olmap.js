@@ -30,6 +30,8 @@ class _OLMap extends Map {
     init() {
         this.setView(this.view);
         this.addLayer(this.osmLayer);
+        let that = this;
+        setTimeout(function () { that.updateSize(); },100);
     }
 
     toggleScalaBar(visible) {

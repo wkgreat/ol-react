@@ -3,6 +3,7 @@
  * */
 import Style from "ol/style/Style";
 import {Circle, Fill, RegularShape, Stroke} from "ol/style";
+import stylefunction from "ol-mapbox-style/dist/stylefunction";
 
 /**
  * default Point Style
@@ -98,4 +99,22 @@ export const rgbArrayToObject = (rgb) => {
 };
 export const rgbObjectToArray = (rgb) => {
     return Object.values(rgb);
+};
+
+
+export const applyMapboxStyleURL = (layer, url) => {
+    fetch(url).then((res)=>{
+        res.json().then(data=>{
+            applyMapboxStyleJson(layer,data,'states');
+        });
+
+    },(err)=>{
+        console.log(err);
+    })
+};
+
+export const applyMapboxStyleJson = (layer,json,source) => {
+    let theStyleFunc;
+    theStyleFunc = stylefunction(layer,json,source);
+    return theStyleFunc;
 };
