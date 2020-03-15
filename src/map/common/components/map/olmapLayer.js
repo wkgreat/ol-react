@@ -71,7 +71,6 @@ export const makeXYZVectorLayer = (olmap, name, url) => {
             url
         })
     });
-    debugger;
     STYLE.applyMapboxStyleJson(theLayer,mbStyle,"composite");
     return theLayer;
 };
@@ -230,16 +229,15 @@ export const layerDown = (olmap, name) => {
  * @param name 缩放的目标图层
  */
 export const zoomToLayer = (olmap, name) => {
-    // const layer = findLayerByName(olmap, name);
-    // if (layer instanceof VectorLayer) {
-    //     if (layer && layer.getSource()) {
-    //         if (layer.getSource().getFeatures().length > 0) {
-    //             olmap.getView().fit(layer.getSource().getExtent());
-    //
-    //         }
-    //     }
-    //
-    // }
+    const layer = findLayerByName(olmap, name);
+    if (layer instanceof VectorLayer) {
+        if (layer && layer.getSource()) {
+            if (layer.getSource().getFeatures().length > 0) {
+                olmap.getView().fit(layer.getSource().getExtent());
+            }
+        }
+
+    }
 };
 
 /**

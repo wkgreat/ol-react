@@ -114,7 +114,6 @@ class MapToobar extends Component {
                         ScalaBarSetting: ScalebarSetting
                     }}
                 />
-
                 <AddDrawLayer
                     visible={this.state.addDrawLayerVisible}
                     onOK={this.setInvisible("addDrawLayerVisible")}
@@ -141,7 +140,6 @@ class MapToobar extends Component {
                     onOK={this.setInvisible("addWKTLayerToolVisible")}
                     onCancel={this.setInvisible("addWKTLayerToolVisible")}
                 />
-
             </Fragment>
         );
     }
